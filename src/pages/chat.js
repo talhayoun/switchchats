@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Box, Paper, Tooltip, useMediaQuery, useTheme } from "@mui/material";
+import { Alert, Box, Paper, Snackbar, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Header from "../components/Header";
 import User from "../components/User";
@@ -60,7 +60,7 @@ const Chat = (props) => {
     const [reportModal, setReportModal] = useState(false);
     const [typingTimeout, setTypingTimeout] = useState(null);
     const [peeringTypingTimeout, setPeeringTypingTimeout] = useState(null);
-
+    const [showSnackBar, setShowSnackBar] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -382,7 +382,24 @@ const Chat = (props) => {
             ) : (
                 <Loading />
             )}
-            {reportModal && <Report open={reportModal} close={() => setReportModal(false)} />}
+            {reportModal && <Report setShowSnackBar={setShowSnackBar} open={reportModal} close={() => setReportModal(false)} />}
+            {showSnackBar && (
+                <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    key={'top' + 'center'}
+                    open={showSnackBar}
+                    autoHideDuration={6000}
+                    onClose={() => setShowSnackBar(false)}
+                >
+                    <Alert
+                        onClose={() => setShowSnackBar(false)}
+                        severity="success"
+                        sx={{ width: "100%" }}
+                    >
+                        הדיווח נשלח ויוטפל בהקדם
+                    </Alert>
+                </Snackbar>
+            )}
         </>
     );
 };
