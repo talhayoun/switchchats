@@ -1,0 +1,172 @@
+import Header from "../components/Header";
+import {
+    Alert,
+    Box,
+    Button,
+    Checkbox,
+    FormControlLabel,
+    Paper,
+    Snackbar,
+    TextField,
+    Typography,
+    useMediaQuery,
+    useTheme,
+    useThemeProps,
+} from "@mui/material";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Regulations from "../components/Regulations";
+import Cards from "../components/Cards";
+
+const Home = () => {
+    const theme = useTheme();
+    const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+    const [isRulesDisplay, setIsRulesDisplay] = useState(false);
+    const [username, setUsername] = useState("");
+    const [message, setMessage] = useState("");
+    const [snackStatus, setSnackStatus] = useState(false);
+    const [regulationVisible, setRegulationVisible] = useState(false);
+
+    const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        navigate("/chat");
+    };
+
+    const searchChatHandler = () => {
+        if (username.length >= 3) {
+            localStorage.setItem("nickname", username);
+            setIsRulesDisplay(true);
+        } else {
+            setSnackStatus(true);
+            setMessage("שם חייב להיות לפחות 3 תווים");
+            setTimeout(() => {
+                setSnackStatus(false);
+            }, 3000);
+        }
+    };
+
+    return (
+        <>
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: 'column',
+                }}
+            >
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        height: "100%",
+                    }}
+                >
+                    <Paper
+                        elevation={3}
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            padding: "20px 150px",
+                        }}
+                    >
+                        <Header />
+                        <Typography
+                            sx={{
+                                margin: 0,
+                                fontSize: "1.4rem",
+                                color: "#6d8fba",
+                                direction: "rtl",
+                            }}
+                        >
+                            למה אתה מחכים? כנסו עכשיו למערכת!
+                        </Typography>
+                        <Box sx={{ width: isDesktop ? "480px" : "100%" }}>
+                            {!isRulesDisplay ? (
+                                <>
+                                    <Typography
+                                        variant="h6"
+                                        textAlign
+                                        sx={{
+                                            textAlign: "center",
+                                            mb: "4px",
+                                            color: "#486890",
+                                        }}
+                                    >
+                                        על מנת להתחיל שיחה, בחרו כינוי שיופיע במערכת ולאחר מכן לחצו
+                                        על הכפתור למטה
+                                    </Typography>
+                                    <TextField
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        dir="rtl"
+                                        variant="standard"
+                                        inputProps={{
+                                            root: "none",
+                                        }}
+                                        sx={{
+                                            background: "#f3f8ff",
+                                            padding: "20px 12px",
+                                            borderRadius: "8px",
+                                            width: "95%",
+                                            border: "0px",
+                                            boxShadow: "1px 1px 1px 1px #ccc",
+                                        }}
+                                        placeholder="הקלד שם..."
+                                    ></TextField>
+                                </>
+                            ) : (
+                                <Box sx={{ margin: "16px 0px", direction: "rtl", display: 'flex', alignItems: 'center' }}>
+                                    <Checkbox defaultChecked required />
+                                    <Typography
+                                        variant="subtitle2"
+                                        sx={{ marginRight: '20px' }}
+                                    >
+                                        אני מאשר שקראתי את <span style={{ cursor: 'pointer', color: 'blue' }} onClick={() => setRegulationVisible(true)}>התקנון</span>
+                                    </Typography>
+                                </Box>
+                            )}
+                        </Box>
+                        <Button
+                            onClick={isRulesDisplay ? handleButtonClick : searchChatHandler}
+                            variant="contained"
+                            sx={{
+                                marginTop: "50px",
+                                color: "#fff",
+                                minWidth: "180px",
+                                padding: "15px 30px",
+                                appearance: "none",
+                                textDecoration: "none",
+                                fontSize: "1.2rem",
+                            }}
+                        >
+                            {isRulesDisplay ? "המשך" : "התחל שיחה"}
+                        </Button>
+                    </Paper>
+                </Box>
+                <Cards />
+            </Box>
+            <Snackbar
+                open={snackStatus}
+                autoHideDuration={3000}
+                sx={{
+                    height: "fit-content",
+                    width: "fit-content",
+                    top: "20px",
+                    left: "45% !important",
+                }}
+            >
+                <Alert sx={{ width: "100%" }} severity="warning">
+                    {message}
+                </Alert>
+            </Snackbar>
+            {regulationVisible && <Regulations open={regulationVisible} close={() => setRegulationVisible(false)} />}
+        </>
+    );
+};
+
+export default Home;

@@ -1,0 +1,390 @@
+import { useNavigate } from "react-router-dom";
+import { Box, Paper, Tooltip, useMediaQuery, useTheme } from "@mui/material";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import Header from "../components/Header";
+import User from "../components/User";
+import { v4 as uuidv4 } from "uuid";
+import { useEffect, useState } from "react";
+import apiHelper from "../api/api";
+import socketIOClient from "socket.io-client";
+import Loading from "./loading";
+import ConversationType from "../components/ConversationType";
+import ChatTextfield from "../components/ChatTextfield";
+import Report from "../components/ReportModal";
+
+const initialState = {
+    state: {
+        nickname: localStorage.getItem("nickname") || "",
+        readRules: false,
+        home: {
+            step: 0,
+            rulesBottom: false,
+            online: 0,
+        },
+        emoji: {
+            visible: false,
+            loading: false,
+            gifs: [],
+            popularGifs: [],
+            recentGifs: [],
+            query: "",
+            searchOffset: 0,
+            activeTab: "gifs",
+        },
+        chat: {
+            loading: false,
+            inQueue: false,
+            message: "",
+            messages: [],
+            currentUser: null,
+            typing: false,
+            peer: null,
+            peerTyping: false,
+            room: null,
+        },
+        window: {
+            maxHeight: null,
+        },
+        roomId: "",
+        reportType: "",
+        reportText: "",
+    },
+};
+
+const Chat = (props) => {
+    const theme = useTheme();
+    const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+    const [state, setState] = useState(initialState);
+    const [message, setMessage] = useState("");
+    const [socket, setSocket] = useState();
+    const [reportModal, setReportModal] = useState(false);
+    const [typingTimeout, setTypingTimeout] = useState(null);
+    const [peeringTypingTimeout, setPeeringTypingTimeout] = useState(null);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // const newSocket = socketIOClient("http://127.0.0.1:8988");
+        const newSocket = socketIOClient("https://api.switchats.com");
+        setSocket(newSocket);
+        return () => newSocket.close();
+    }, []);
+
+    useEffect(() => {
+        console.log(socket);
+        if (!socket) return;
+        let userId = uuidv4();
+        let username = localStorage.getItem("nickname");
+        if (!username) navigate("/");
+        if (localStorage.getItem("uid")) {
+            userId = localStorage.getItem("uid");
+        } else {
+            userId = uuidv4();
+            localStorage.setItem("uid", userId);
+        }
+
+        socket.on(
+            "connect",
+            () => {
+                console.log("[WS] Connected");
+
+                const newUser = {
+                    id: userId,
+                    nickname: username,
+                };
+
+                socket.emit("join", newUser);
+            },
+            {
+                reconnection: true,
+                reconnectionDelay: 1000,
+                reconnectionDelayMax: 5000,
+                forceNew: true,
+            }
+        );
+
+        socket.on("joined", (payload) => {
+            setState((prevState) => {
+                let cloneState = { ...prevState };
+                cloneState.state.chat.currentUser = payload;
+                cloneState.state.chat.loading = false;
+                cloneState.state.chat.inQueue = true;
+                return cloneState;
+            });
+        });
+
+        socket.on("chatStart", (payload) => {
+            console.log("chatstart");
+            apiHelper.attachRoom(payload.room);
+            setState((prevState) => {
+                let cloneState = { ...prevState };
+                cloneState.state.roomId = payload.room;
+                cloneState.state.chat.loading = false;
+                cloneState.state.chat.inQueue = false;
+                cloneState.state.chat.message = "";
+                cloneState.state.chat.messages = [];
+                cloneState.state.chat.peer = payload.user;
+                cloneState.state.chat.room = payload.room;
+                return cloneState;
+            });
+        });
+
+        socket.on("chatEnd", () => {
+            apiHelper.leaveRoom(state.state.roomId);
+            setState((prevState) => {
+                let cloneState = { ...prevState };
+                cloneState.state.chat.loading = false;
+                cloneState.state.chat.message = "";
+                cloneState.state.chat.messages = [];
+                cloneState.state.chat.peer = null;
+                cloneState.state.chat.room = null;
+                cloneState.state.chat.inQueue = true;
+                return cloneState;
+            });
+            navigate("/ads");
+            // this.$router.push("/ads");
+
+            // this.$store.commit("setChatQueue", true);
+            // window.location.pathname = '/ads.html'
+        });
+
+        socket.on("message", (payload) => {
+            const msg_ = payload.data.text;
+            const uid_ = payload.uid;
+            setState((prevState) => {
+                let cloneState = { ...prevState };
+                cloneState.state.chat.messages = [
+                    ...cloneState.state.chat.messages,
+                    payload,
+                ];
+                return cloneState;
+            });
+            clearTimeout(typingTimeout);
+            setState((prevState) => {
+                let cloneState = { ...prevState };
+                cloneState.state.chat.peerTyping = false;
+                return cloneState;
+            });
+            // apiHelper.message(uid_, msg_, state.state.roomId);
+            // this.scrollChatDown();
+        });
+
+        socket.on("typingStatus", (payload) => {
+            setState((prevState) => {
+                let cloneState = { ...prevState };
+                cloneState.state.chat.peerTyping = payload;
+                return cloneState;
+            });
+            clearTimeout(peeringTypingTimeout);
+            setPeeringTypingTimeout(
+                setTimeout(() => {
+                    setState((prevState) => {
+                        let cloneState = { ...prevState };
+                        cloneState.state.chat.peerTyping = false;
+                        return cloneState;
+                    });
+                }, 2000)
+            );
+        });
+
+        // socket.on('banned', () => {
+        //     this.$notify({
+        //         group: 'main',
+        //         text: 'You are blocked, due to multiple reports of your behavior',
+        //         type: 'error'
+        //     })
+        // })
+    }, [socket]);
+
+    const chatInputKeyUp = () => {
+        if (state.state.chat.typing === false) {
+            setState((prevState) => {
+                let cloneState = { ...prevState };
+                cloneState.state.chat.typing = true;
+                return cloneState;
+            });
+            socket.emit("isTyping", true);
+            typingTimeoutHandler();
+        } else {
+            clearTimeout(typingTimeout);
+            typingTimeoutHandler();
+        }
+    };
+
+    const typingTimeoutHandler = () => {
+        clearTimeout(typingTimeout);
+        setTypingTimeout(
+            setTimeout(() => {
+                setState((prevState) => {
+                    let cloneState = { ...prevState };
+                    cloneState.state.chat.typing = false;
+                    return cloneState;
+                });
+            }, 2000)
+        );
+    };
+
+    const changeNameHandler = () => {
+        localStorage.removeItem('nickname');
+        localStorage.removeItem('uid');
+        socket.emit("leaveRoom");
+        navigate('/');
+    }
+
+    const sendMessageHandler = () => {
+        if (message.length === 0) return;
+
+        const newMessage = {
+            type: "text",
+            uid: state.state.chat.currentUser.id,
+            data: {
+                text: message,
+            },
+        };
+        clearTimeout(typingTimeout);
+        setState((prevState) => {
+            let cloneState = { ...prevState };
+            cloneState.state.chat.typing = false;
+            return cloneState;
+        });
+        socket.emit("message", newMessage);
+        setMessage("");
+        // this.scrollChatDown()
+
+        //     this.$notify({
+        //       group: 'main',
+        //       text: 'Please enter a message',
+        //       type: 'warn'
+        //     })
+
+        //   this.$refs.chatInput.focus()
+    };
+
+    return (
+        <>
+            {state.state.chat.loading || !state.state.chat.inQueue ? (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100vh",
+                        width: '100%'
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            width: '100%',
+                            maxWidth: '500px'
+                        }}
+                    >
+                        <Header />
+                        <Paper
+                            sx={{
+                                height: "540px",
+                                display: "flex",
+                                justifyContent: "center",
+                                flexDirection: "column",
+                                width: '90%'
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    padding: "10px",
+                                }}
+                            >
+                                <Box sx={{ display: 'flex', flexDirection: "column" }}>
+                                    <Tooltip title="יציאה מהצאט">
+                                        <ExitToAppIcon
+                                            onClick={changeNameHandler}
+                                            sx={{
+                                                textDecoration: "none",
+                                                width: "100%",
+                                                maxWidth: '100px',
+                                                color: "#3c5a7f",
+                                                cursor: 'pointer',
+                                                marginBottom: "3%",
+                                                textAlign: "center",
+                                            }}
+                                        />
+                                    </Tooltip>
+                                </Box>
+                                <User
+                                    user={state.state.chat.peer}
+                                    isTyping={state.state.chat.peerTyping}
+                                />
+                            </Box>
+                            <div style={{ height: "100%", padding: "5px" }}>
+                                <Box
+                                    className="chatblock"
+                                    sx={{
+                                        height: "100%",
+                                        borderBottomLeftRadius: "8px",
+                                        borderBottomRightRadius: "8px",
+                                        // background: "#f3f8ff",
+                                        backgroundSize: "cover",
+                                        backgroundPosition: "50%",
+                                        position: "relative",
+                                    }}
+                                >
+                                    <ConversationType />
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            alignItems: "flex-end",
+                                            flexDirection: "column",
+                                            overflow: "auto",
+                                            width: "100%",
+                                            maxHeight: "250px",
+                                        }}
+                                    >
+                                        {state.state.chat.messages.length > 0 &&
+                                            state.state.chat.messages.map((curMessage, index) => (
+                                                <p
+                                                    key={index}
+                                                    style={{
+                                                        alignSelf: state.state.chat.currentUser.id === curMessage.uid ? "end" : 'flex-start',
+                                                        margin: "5px 10px 5px 0px",
+                                                        maxWidth: "65%",
+                                                        fontSize: "1.1rem",
+                                                        overflowWrap: "break-word",
+                                                        width: "fit-content",
+                                                        padding: "6px 15px",
+                                                        borderRadius: "6px",
+                                                        backgroundColor:
+                                                            state.state.chat.currentUser.id === curMessage.uid
+                                                                ? "#b4cbee"
+                                                                : "#CBC3E3",
+                                                    }}
+                                                >
+                                                    {curMessage.data?.text}
+                                                </p>
+                                            ))}
+                                    </Box>
+                                    <ChatTextfield
+                                        keyDown={chatInputKeyUp}
+                                        message={message}
+                                        onChangeMessage={setMessage}
+                                        sendMessage={sendMessageHandler}
+                                        socket={socket}
+                                        reportModal={() => setReportModal(true)}
+                                    />
+                                </Box>
+                            </div>
+                        </Paper>
+                    </Box>
+                </Box>
+            ) : (
+                <Loading />
+            )}
+            {reportModal && <Report open={reportModal} close={() => setReportModal(false)} />}
+        </>
+    );
+};
+
+export default Chat;
