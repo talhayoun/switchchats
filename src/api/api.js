@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const api = 'http://127.0.0.1:8988'
+const api = 'https://api.switchats.com'
 
 const apiHelper = {
     attachRoom(roomId) {
