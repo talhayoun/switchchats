@@ -55,6 +55,7 @@ const Chat = (props) => {
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
     const chatRef = useRef()
+    const inputRef = useRef();
     const [state, setState] = useState(initialState);
     const [message, setMessage] = useState("");
     const [socket, setSocket] = useState();
@@ -65,6 +66,11 @@ const Chat = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        window.addEventListener('keyup', (e) => {
+            if (e.key == "Enter") {
+
+            }
+        })
         const newSocket = socketIOClient("https://api.switchats.com");
         setSocket(newSocket);
         return () => newSocket.close();
@@ -200,7 +206,9 @@ const Chat = (props) => {
         }
     }, [state])
 
-    const chatInputKeyUp = () => {
+    const chatInputKeyUp = (e) => {
+        if (e.key === 'Enter') return sendMessageHandler();
+
         if (state.state.chat.typing === false) {
             setState((prevState) => {
                 let cloneState = { ...prevState };
@@ -271,7 +279,7 @@ const Chat = (props) => {
                     sx={{
                         display: "flex",
                         justifyContent: "center",
-                        alignItems: "center",
+                        alignItems: "flex-start",
                         height: "100vh",
                         width: '100%'
                     }}
@@ -299,7 +307,7 @@ const Chat = (props) => {
                                 sx={{
                                     display: "flex",
                                     justifyContent: "space-between",
-                                    padding: "10px",
+                                    padding: "5px",
                                 }}
                             >
                                 <Box sx={{ display: 'flex', flexDirection: "column" }}>

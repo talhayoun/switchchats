@@ -11,7 +11,7 @@ import {
     useMediaQuery,
     useTheme
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Regulations from "../components/Regulations";
 import Cards from "../components/Cards";
@@ -43,6 +43,10 @@ const Home = () => {
             }, 3000);
         }
     };
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, [])
 
     return (
         <>

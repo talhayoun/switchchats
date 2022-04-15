@@ -15,7 +15,7 @@ const Ads = () => {
                     width: "100%",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     flexDirection: "column",
                 }}
             >
@@ -26,12 +26,14 @@ const Ads = () => {
                 <Typography variant="subtitle2">
                     על מנת להתחיל שיחה חדשה, לחצו על הכפתור למטה
                 </Typography>
-                <center>
+                <center style={{ height: '200px' }}>
                     <iframe
                         src="https://www.noar-il.co.il/flappy/ads.html"
-                        width="98%"
-                        height="300"
+                        width="85%"
+                        height="100%"
                         frameBorder="0"
+                        scrolling="no"
+
                     ></iframe>
                 </center>
                 <Button
