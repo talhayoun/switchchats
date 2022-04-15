@@ -4,7 +4,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Header from "../components/Header";
 import User from "../components/User";
 import { v4 as uuidv4 } from "uuid";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import apiHelper from "../api/api";
 import socketIOClient from "socket.io-client";
 import Loading from "./loading";
@@ -54,6 +54,7 @@ const initialState = {
 const Chat = (props) => {
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+    const chatRef = useRef()
     const [state, setState] = useState(initialState);
     const [message, setMessage] = useState("");
     const [socket, setSocket] = useState();
@@ -64,14 +65,12 @@ const Chat = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // const newSocket = socketIOClient("http://127.0.0.1:8988");
         const newSocket = socketIOClient("https://api.switchats.com");
         setSocket(newSocket);
         return () => newSocket.close();
     }, []);
 
     useEffect(() => {
-        console.log(socket);
         if (!socket) return;
         let userId = uuidv4();
         let username = localStorage.getItem("nickname");
@@ -114,7 +113,6 @@ const Chat = (props) => {
         });
 
         socket.on("chatStart", (payload) => {
-            console.log("chatstart");
             apiHelper.attachRoom(payload.room);
             setState((prevState) => {
                 let cloneState = { ...prevState };
@@ -195,6 +193,12 @@ const Chat = (props) => {
         //     })
         // })
     }, [socket]);
+
+    useEffect(() => {
+        if (chatRef.current) {
+            chatRef.current.scrollTop = chatRef.current.scrollHeight
+        }
+    }, [state])
 
     const chatInputKeyUp = () => {
         if (state.state.chat.typing === false) {
@@ -281,7 +285,7 @@ const Chat = (props) => {
                             maxWidth: '500px'
                         }}
                     >
-                        <Header />
+                        <Header height={'180px'} />
                         <Paper
                             sx={{
                                 height: "540px",
@@ -334,6 +338,7 @@ const Chat = (props) => {
                                 >
                                     <ConversationType />
                                     <Box
+                                        ref={chatRef}
                                         sx={{
                                             display: "flex",
                                             alignItems: "flex-end",

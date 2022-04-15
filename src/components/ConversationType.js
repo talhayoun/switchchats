@@ -10,6 +10,7 @@ const ConversationType = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 flexDirection: "column",
+                direction: 'rtl'
             }}
         >
             <span style={{ color: "#2d4b71" }}>

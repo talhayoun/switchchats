@@ -1,7 +1,7 @@
+
 import {
     Alert,
     Button,
-    InputLabel,
     MenuItem,
     Modal,
     Paper,
@@ -18,12 +18,15 @@ import { useState } from "react";
 const Report = (props) => {
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
-
-
+    const [select, setSelect] = useState();
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [alert, setAlert] = useState(false);
     const handleClick = () => {
-        props.setShowSnackBar(true)
-        props.close()
-    }
+        if (name.length === 0 || description.length === 0) return setAlert(true)
+        props.setShowSnackBar(true);
+        props.close();
+    };
     return (
         <>
             <Modal
@@ -54,12 +57,27 @@ const Report = (props) => {
                             padding: "30px",
                         }}
                     >
-                        <TextField label="שם"></TextField>
-                        <Select dir="rtl">
-                            <MenuItem>פגיעה מילולית</MenuItem>
-                            <MenuItem>אחר</MenuItem>
+                        <TextField
+                            dir="rtl"
+                            label="שם"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                        <Select
+                            dir="rtl"
+                            value={select}
+                            onChange={(e) => setSelect(e.target.value)}
+                        >
+                            <MenuItem value="פגיעה מילולית">פגיעה מילולית</MenuItem>
+                            <MenuItem value="אחר">אחר</MenuItem>
                         </Select>
-                        <TextField multiline rows={5} label="תיאור המקרה"></TextField>
+                        <TextField
+                            multiline
+                            rows={5}
+                            label="תיאור המקרה"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
                     </Box>
                     <Box
                         sx={{
@@ -75,7 +93,21 @@ const Report = (props) => {
                     </Box>
                 </Paper>
             </Modal>
-
+            {alert && <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                key={'top' + 'center'}
+                open={alert}
+                autoHideDuration={6000}
+                onClose={() => setAlert(false)}
+            >
+                <Alert
+                    onClose={() => setAlert(false)}
+                    severity="error"
+                    sx={{ width: "100%" }}
+                >
+                    אנא מלא/י את כל השדות
+                </Alert>
+            </Snackbar>}
         </>
     );
 };

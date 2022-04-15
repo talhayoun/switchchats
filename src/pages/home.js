@@ -4,14 +4,12 @@ import {
     Box,
     Button,
     Checkbox,
-    FormControlLabel,
     Paper,
     Snackbar,
     TextField,
     Typography,
     useMediaQuery,
-    useTheme,
-    useThemeProps,
+    useTheme
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -71,14 +69,14 @@ const Home = () => {
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
-                            padding: "20px 150px",
+                            padding: isDesktop ? "20px 150px" : "10px 20px 30px 20px",
                         }}
                     >
                         <Header />
                         <Typography
                             sx={{
                                 margin: 0,
-                                fontSize: "1.4rem",
+                                fontSize: isDesktop ? "1.4rem" : '16px',
                                 color: "#6d8fba",
                                 direction: "rtl",
                             }}
@@ -92,6 +90,7 @@ const Home = () => {
                                         variant="h6"
                                         textAlign
                                         sx={{
+                                            fontSize: isDesktop ? '18px' : '14px',
                                             textAlign: "center",
                                             mb: "4px",
                                             color: "#486890",

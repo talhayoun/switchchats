@@ -51,8 +51,6 @@ const ChatTextfield = (props) => {
                             <InputAdornment position="end">
                                 <IconButton
                                     aria-label="toggle password visibility"
-                                // onClick={handleClickShowPassword}
-                                // onMouseDown={handleMouseDownPassword}
                                 >
                                     <ReportGmailerrorredIcon onClick={props.reportModal} />
                                 </IconButton>
