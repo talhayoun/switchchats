@@ -280,7 +280,6 @@ const Chat = (props) => {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "flex-start",
-                        height: "100vh",
                         width: '100%'
                     }}
                 >
@@ -293,7 +292,7 @@ const Chat = (props) => {
                             maxWidth: '500px'
                         }}
                     >
-                        <Header height={'180px'} />
+                        <Header height={'110px'} />
                         <Paper
                             sx={{
                                 height: "540px",
