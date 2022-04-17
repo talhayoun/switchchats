@@ -347,7 +347,7 @@ const Chat = (props) => {
                                             flexDirection: "column",
                                             overflow: "auto",
                                             width: "100%",
-                                            maxHeight: "250px",
+                                            maxHeight: "450px",
                                         }}
                                     >
                                         {state.state.chat.messages.length > 0 &&
