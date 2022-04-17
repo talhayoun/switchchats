@@ -310,7 +310,7 @@ const Chat = (props) => {
                             justifyContent: "center",
                             flexDirection: "column",
                             width: isDesktop ? "90%" : "100%",
-                            // height: isDesktop ? "540px" : "100vh",
+                            height: '100%'
                         }}
                     >
                         <Box
