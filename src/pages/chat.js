@@ -1,5 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { Alert, Box, Paper, Snackbar, Tooltip, useMediaQuery, useTheme } from "@mui/material";
+import {
+    Alert,
+    Box,
+    Paper,
+    Snackbar,
+    Tooltip,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Header from "../components/Header";
 import User from "../components/User";
@@ -53,8 +61,8 @@ const initialState = {
 
 const Chat = (props) => {
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-    const chatRef = useRef()
+    const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+    const chatRef = useRef();
     const inputRef = useRef();
     const [state, setState] = useState(initialState);
     const [message, setMessage] = useState("");
@@ -66,11 +74,10 @@ const Chat = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        window.addEventListener('keyup', (e) => {
+        window.addEventListener("keyup", (e) => {
             if (e.key == "Enter") {
-
             }
-        })
+        });
         const newSocket = socketIOClient("https://api.switchats.com");
         setSocket(newSocket);
         return () => newSocket.close();
@@ -202,12 +209,12 @@ const Chat = (props) => {
 
     useEffect(() => {
         if (chatRef.current) {
-            chatRef.current.scrollTop = chatRef.current.scrollHeight
+            chatRef.current.scrollTop = chatRef.current.scrollHeight;
         }
-    }, [state])
+    }, [state]);
 
     const chatInputKeyUp = (e) => {
-        if (e.key === 'Enter') return sendMessageHandler();
+        if (e.key === "Enter") return sendMessageHandler();
 
         if (state.state.chat.typing === false) {
             setState((prevState) => {
@@ -237,11 +244,11 @@ const Chat = (props) => {
     };
 
     const changeNameHandler = () => {
-        localStorage.removeItem('nickname');
-        localStorage.removeItem('uid');
+        localStorage.removeItem("nickname");
+        localStorage.removeItem("uid");
         socket.emit("leaveRoom");
-        navigate('/');
-    }
+        navigate("/");
+    };
 
     const sendMessageHandler = () => {
         if (message.length === 0) return;
@@ -275,125 +282,153 @@ const Chat = (props) => {
     return (
         <>
             {state.state.chat.loading || !state.state.chat.inQueue ? (
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', width: '100%' }}>
-                    <Box
+                // <Box
+                //     sx={{
+                //         display: isDesktop ? "flex" : "block",
+                //         alignItems: "center",
+                //         justifyContent: "center",
+                //         height: "100vh",
+                //         width: "100%",
+                //     }}
+                // >
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: 'center',
+                        width: "100%",
+                        maxWidth: "500px",
+                        height: "100vh",
+                        margin: '0 auto'
+                    }}
+                >
+                    {isDesktop && <Header height={"150px"} />}
+                    <Paper
                         sx={{
                             display: "flex",
+                            justifyContent: "center",
                             flexDirection: "column",
-                            alignItems: "center",
-                            width: '100%',
-                            maxWidth: '500px',
-                            height: '100vh'
-
+                            width: isDesktop ? "90%" : "100%",
+                            // height: isDesktop ? "540px" : "100vh",
                         }}
                     >
-                        {isDesktop && <Header height={'150px'} />}
-                        <Paper
+                        <Box
                             sx={{
                                 display: "flex",
-                                justifyContent: "center",
-                                flexDirection: "column",
-                                width: isDesktop ? '90%' : '100%',
-                                height: isDesktop ? '540px' : '100vh'
+                                justifyContent: "space-between",
+                                padding: "5px",
                             }}
                         >
                             <Box
                                 sx={{
                                     display: "flex",
-                                    justifyContent: "space-between",
-                                    padding: "5px",
+                                    flexDirection: "column",
+                                    maxWidth: "30px",
                                 }}
                             >
-                                <Box sx={{ display: 'flex', flexDirection: "column", maxWidth: '30px' }}>
-                                    <Tooltip title="יציאה מהצאט">
-                                        <ExitToAppIcon
-                                            onClick={changeNameHandler}
-                                            sx={{
-                                                textDecoration: "none",
-                                                width: "100%",
-                                                maxWidth: '100px',
-                                                color: "#3c5a7f",
-                                                cursor: 'pointer',
-                                                marginBottom: "3%",
-                                                textAlign: "center",
-                                            }}
-                                        />
-                                    </Tooltip>
-                                </Box>
-                                <User
-                                    user={state.state.chat.peer}
-                                    isTyping={state.state.chat.peerTyping}
-                                />
+                                <Tooltip title="יציאה מהצאט">
+                                    <ExitToAppIcon
+                                        onClick={changeNameHandler}
+                                        sx={{
+                                            textDecoration: "none",
+                                            width: "100%",
+                                            maxWidth: "100px",
+                                            color: "#3c5a7f",
+                                            cursor: "pointer",
+                                            marginBottom: "3%",
+                                            textAlign: "center",
+                                        }}
+                                    />
+                                </Tooltip>
                             </Box>
-                            <div style={{ height: "100%", padding: "5px" }}>
+                            <User
+                                user={state.state.chat.peer}
+                                isTyping={state.state.chat.peerTyping}
+                            />
+                        </Box>
+                        <div style={{ height: "100%", padding: "5px" }}>
+                            <Box
+                                className="chatblock"
+                                sx={{
+                                    height: "100%",
+                                    borderBottomLeftRadius: "8px",
+                                    borderBottomRightRadius: "8px",
+                                    // background: "#f3f8ff",
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "50%",
+                                    position: "relative",
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'space-between'
+                                }}
+                            >
+                                <ConversationType />
                                 <Box
-                                    className="chatblock"
+                                    ref={chatRef}
                                     sx={{
-                                        height: "100%",
-                                        borderBottomLeftRadius: "8px",
-                                        borderBottomRightRadius: "8px",
-                                        // background: "#f3f8ff",
-                                        backgroundSize: "cover",
-                                        backgroundPosition: "50%",
-                                        position: "relative",
+                                        display: "flex",
+                                        alignItems: "flex-end",
+                                        flexDirection: "column",
+                                        overflow: "auto",
+                                        width: "100%",
+                                        maxHeight: "450px",
+                                        minHeight: '400px'
                                     }}
                                 >
-                                    <ConversationType />
-                                    <Box
-                                        ref={chatRef}
-                                        sx={{
-                                            display: "flex",
-                                            alignItems: "flex-end",
-                                            flexDirection: "column",
-                                            overflow: "auto",
-                                            width: "100%",
-                                            maxHeight: "450px",
-                                        }}
-                                    >
-                                        {state.state.chat.messages.length > 0 &&
-                                            state.state.chat.messages.map((curMessage, index) => (
-                                                <p
-                                                    key={index}
-                                                    style={{
-                                                        alignSelf: state.state.chat.currentUser.id === curMessage.uid ? "end" : 'flex-start',
-                                                        margin: "5px 10px 5px 0px",
-                                                        maxWidth: "65%",
-                                                        fontSize: "1.1rem",
-                                                        overflowWrap: "break-word",
-                                                        width: "fit-content",
-                                                        padding: "6px 15px",
-                                                        borderRadius: "6px",
-                                                        backgroundColor:
-                                                            state.state.chat.currentUser.id === curMessage.uid
-                                                                ? "#b4cbee"
-                                                                : "#CBC3E3",
-                                                    }}
-                                                >
-                                                    {curMessage.data?.text}
-                                                </p>
-                                            ))}
-                                    </Box>
-                                    <ChatTextfield
-                                        keyDown={chatInputKeyUp}
-                                        message={message}
-                                        onChangeMessage={setMessage}
-                                        sendMessage={sendMessageHandler}
-                                        socket={socket}
-                                        reportModal={() => setReportModal(true)}
-                                    />
+                                    {state.state.chat.messages.length > 0 &&
+                                        state.state.chat.messages.map((curMessage, index) => (
+                                            <p
+                                                key={index}
+                                                style={{
+                                                    alignSelf:
+                                                        state.state.chat.currentUser.id === curMessage.uid
+                                                            ? "end"
+                                                            : "flex-start",
+                                                    margin: "5px 10px 5px 0px",
+                                                    maxWidth: "65%",
+                                                    fontSize: "1.1rem",
+                                                    overflowWrap: "break-word",
+                                                    width: "fit-content",
+                                                    padding: "6px 15px",
+                                                    borderRadius: "6px",
+                                                    backgroundColor:
+                                                        state.state.chat.currentUser.id === curMessage.uid
+                                                            ? "#b4cbee"
+                                                            : "#CBC3E3",
+                                                }}
+                                            >
+                                                {curMessage.data?.text}
+                                            </p>
+                                        ))}
                                 </Box>
-                            </div>
-                        </Paper>
-                    </Box>
+                                <ChatTextfield
+                                    keyDown={chatInputKeyUp}
+                                    message={message}
+                                    onChangeMessage={setMessage}
+                                    sendMessage={sendMessageHandler}
+                                    socket={socket}
+                                    reportModal={() => setReportModal(true)}
+                                />
+                            </Box>
+                        </div>
+                    </Paper>
                 </Box>
+                // </Box>
             ) : (
                 <Loading />
             )}
-            {reportModal && <Report setShowSnackBar={setShowSnackBar} open={reportModal} close={() => setReportModal(false)} />}
+            {reportModal && (
+                <Report
+                    setShowSnackBar={setShowSnackBar}
+                    open={reportModal}
+                    close={() => setReportModal(false)}
+                />
+            )}
             {showSnackBar && (
                 <Snackbar
-                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                    key={'top' + 'center'}
+                    anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                    key={"top" + "center"}
                     open={showSnackBar}
                     autoHideDuration={6000}
                     onClose={() => setShowSnackBar(false)}
