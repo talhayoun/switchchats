@@ -311,10 +311,8 @@ const Chat = (props) => {
                                 justifyContent: "space-between",
                                 alignItems: 'center',
                                 padding: "5px",
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: '95%'
+                                width: '95%',
+                                margin: '0 auto'
                             }}
                         >
                             <Box
@@ -352,7 +350,6 @@ const Chat = (props) => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 padding: '5px',
-                                marginTop: '60px'
                             }}
                         >
                             <ConversationType />
