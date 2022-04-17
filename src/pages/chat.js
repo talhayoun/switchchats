@@ -297,18 +297,24 @@ const Chat = (props) => {
                     {isDesktop && <Header height={"150px"} />}
                     <Paper
                         sx={{
+                            position: 'relative',
                             display: "flex",
                             justifyContent: "center",
                             flexDirection: "column",
                             width: isDesktop ? "90%" : "100%",
-                            height: '100%'
+                            height: isDesktop ? "550px" : '100%'
                         }}
                     >
                         <Box
                             sx={{
                                 display: "flex",
                                 justifyContent: "space-between",
+                                alignItems: 'center',
                                 padding: "5px",
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '95%'
                             }}
                         >
                             <Box
@@ -323,7 +329,8 @@ const Chat = (props) => {
                                         onClick={changeNameHandler}
                                         sx={{
                                             textDecoration: "none",
-                                            width: "100%",
+                                            width: "95%",
+                                            margin: '0 auto',
                                             maxWidth: "100px",
                                             color: "#3c5a7f",
                                             cursor: "pointer",
@@ -343,7 +350,9 @@ const Chat = (props) => {
                             sx={{
                                 height: "100%",
                                 display: 'flex',
-                                flexDirection: 'column'
+                                flexDirection: 'column',
+                                padding: '5px',
+                                marginTop: '60px'
                             }}
                         >
                             <ConversationType />
