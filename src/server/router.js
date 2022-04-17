@@ -7,7 +7,7 @@ import Ads from "../pages/ads";
 const AppRouter = () => {
     return (
         <BrowserRouter>
-            <Layout />
+            {/* <Layout /> */}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/chat" element={<Chat />} />

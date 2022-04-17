@@ -282,15 +282,6 @@ const Chat = (props) => {
     return (
         <>
             {state.state.chat.loading || !state.state.chat.inQueue ? (
-                // <Box
-                //     sx={{
-                //         display: isDesktop ? "flex" : "block",
-                //         alignItems: "center",
-                //         justifyContent: "center",
-                //         height: "100vh",
-                //         width: "100%",
-                //     }}
-                // >
                 <Box
                     sx={{
                         display: "flex",
@@ -347,74 +338,64 @@ const Chat = (props) => {
                                 isTyping={state.state.chat.peerTyping}
                             />
                         </Box>
-                        <div style={{ height: "100%", padding: "5px" }}>
+                        <Box
+                            className="chatblock"
+                            sx={{
+                                height: "100%",
+                                display: 'flex',
+                                flexDirection: 'column'
+                            }}
+                        >
+                            <ConversationType />
                             <Box
-                                className="chatblock"
+                                ref={chatRef}
                                 sx={{
-                                    height: "100%",
-                                    borderBottomLeftRadius: "8px",
-                                    borderBottomRightRadius: "8px",
-                                    // background: "#f3f8ff",
-                                    backgroundSize: "cover",
-                                    backgroundPosition: "50%",
-                                    position: "relative",
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'space-between'
+                                    display: "flex",
+                                    alignItems: "flex-end",
+                                    flexDirection: "column",
+                                    overflow: "auto",
+                                    width: "100%",
+                                    maxHeight: "450px",
+                                    minHeight: '400px'
                                 }}
                             >
-                                <ConversationType />
-                                <Box
-                                    ref={chatRef}
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "flex-end",
-                                        flexDirection: "column",
-                                        overflow: "auto",
-                                        width: "100%",
-                                        maxHeight: "450px",
-                                        minHeight: '400px'
-                                    }}
-                                >
-                                    {state.state.chat.messages.length > 0 &&
-                                        state.state.chat.messages.map((curMessage, index) => (
-                                            <p
-                                                key={index}
-                                                style={{
-                                                    alignSelf:
-                                                        state.state.chat.currentUser.id === curMessage.uid
-                                                            ? "end"
-                                                            : "flex-start",
-                                                    margin: "5px 10px 5px 0px",
-                                                    maxWidth: "65%",
-                                                    fontSize: "1.1rem",
-                                                    overflowWrap: "break-word",
-                                                    width: "fit-content",
-                                                    padding: "6px 15px",
-                                                    borderRadius: "6px",
-                                                    backgroundColor:
-                                                        state.state.chat.currentUser.id === curMessage.uid
-                                                            ? "#b4cbee"
-                                                            : "#CBC3E3",
-                                                }}
-                                            >
-                                                {curMessage.data?.text}
-                                            </p>
-                                        ))}
-                                </Box>
-                                <ChatTextfield
-                                    keyDown={chatInputKeyUp}
-                                    message={message}
-                                    onChangeMessage={setMessage}
-                                    sendMessage={sendMessageHandler}
-                                    socket={socket}
-                                    reportModal={() => setReportModal(true)}
-                                />
+                                {state.state.chat.messages.length > 0 &&
+                                    state.state.chat.messages.map((curMessage, index) => (
+                                        <p
+                                            key={index}
+                                            style={{
+                                                alignSelf:
+                                                    state.state.chat.currentUser.id === curMessage.uid
+                                                        ? "end"
+                                                        : "flex-start",
+                                                margin: "5px 10px 5px 0px",
+                                                maxWidth: "65%",
+                                                fontSize: "1.1rem",
+                                                overflowWrap: "break-word",
+                                                width: "fit-content",
+                                                padding: "6px 15px",
+                                                borderRadius: "6px",
+                                                backgroundColor:
+                                                    state.state.chat.currentUser.id === curMessage.uid
+                                                        ? "#b4cbee"
+                                                        : "#CBC3E3",
+                                            }}
+                                        >
+                                            {curMessage.data?.text}
+                                        </p>
+                                    ))}
                             </Box>
-                        </div>
+                        </Box>
+                        <ChatTextfield
+                            keyDown={chatInputKeyUp}
+                            message={message}
+                            onChangeMessage={setMessage}
+                            sendMessage={sendMessageHandler}
+                            socket={socket}
+                            reportModal={() => setReportModal(true)}
+                        />
                     </Paper>
                 </Box>
-                // </Box>
             ) : (
                 <Loading />
             )}
