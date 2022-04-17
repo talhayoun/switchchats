@@ -5,47 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html, body{
+  height:100%;
   box-sizing: border-box;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.layout {
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  z-index: -1;
-}
-
-.bg-center {
-  background-image: url("../src/assets/img/background/background__enter.png");
-  height: 100%;
-  width: 100%;
-  /* position: absolute; */
-  background-size: 100% 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-
-.bg-dots {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.bg-dots-img {
-  background-image: url("../src/assets/img/background/background__enter__center.f4636711.png");
-  background-repeat: no-repeat;
-  background-position: center 65%;
-  background-size: auto 65%;
-  height: 100%;
-  width: 100%;
-  position: absolute;
+.root{
+  height: 100%
 }
 
 .MuiInput-root::before, .MuiInput-root::after{
