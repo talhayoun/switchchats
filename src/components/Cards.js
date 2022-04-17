@@ -25,7 +25,7 @@ const Cards = () => {
                 minWidth: '300px'
             }}
         >
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345, direction: 'rtl' }}>
                 <CardMedia
                     component="img"
                     height="140"
@@ -40,7 +40,7 @@ const Cards = () => {
                     </Typography>
                 </CardContent>
             </Card>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345, direction: 'rtl' }}>
                 <CardMedia
                     component="img"
                     height="140"
@@ -55,7 +55,7 @@ const Cards = () => {
                     </Typography>
                 </CardContent>
             </Card>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345, direction: 'rtl' }}>
                 <CardMedia
                     component="img"
                     height="140"

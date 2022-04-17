@@ -275,31 +275,26 @@ const Chat = (props) => {
     return (
         <>
             {state.state.chat.loading || !state.state.chat.inQueue ? (
-                <Box
-                    sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "flex-start",
-                        width: '100%'
-                    }}
-                >
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', width: '100%' }}>
                     <Box
                         sx={{
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
                             width: '100%',
-                            maxWidth: '500px'
+                            maxWidth: '500px',
+                            height: '100vh'
+
                         }}
                     >
-                        <Header height={'110px'} />
+                        {isDesktop && <Header height={'150px'} />}
                         <Paper
                             sx={{
-                                height: "540px",
                                 display: "flex",
                                 justifyContent: "center",
                                 flexDirection: "column",
-                                width: '90%'
+                                width: isDesktop ? '90%' : '100%',
+                                height: isDesktop ? '540px' : '100vh'
                             }}
                         >
                             <Box
@@ -309,7 +304,7 @@ const Chat = (props) => {
                                     padding: "5px",
                                 }}
                             >
-                                <Box sx={{ display: 'flex', flexDirection: "column" }}>
+                                <Box sx={{ display: 'flex', flexDirection: "column", maxWidth: '30px' }}>
                                     <Tooltip title="יציאה מהצאט">
                                         <ExitToAppIcon
                                             onClick={changeNameHandler}
