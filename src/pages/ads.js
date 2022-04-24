@@ -19,7 +19,7 @@ const Ads = () => {
                     flexDirection: "column",
                 }}
             >
-                <Header />
+                <Header height={'200px'} />
                 <Typography variant="h6" textAlign="center" dir="rtl" sx={{ fontSize: isDesktop ? '18px' : '14px' }}>
                     השיחה סתיימה וזה הזמן להתחיל שיחה עם מישהו/י חדש/ה
                 </Typography>
