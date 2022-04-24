@@ -27,14 +27,7 @@ const Ads = () => {
                     על מנת להתחיל שיחה חדשה, לחצו על הכפתור למטה
                 </Typography>
                 <center style={{ height: '200px' }}>
-                    <iframe
-                        src="https://www.noar-il.co.il/flappy/ads.html"
-                        width="85%"
-                        height="100%"
-                        frameBorder="0"
-                        scrolling="no"
-
-                    ></iframe>
+                <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_17"></div> <script type="text/javascript" async="async" src="//widgets.outbrain.com/outbrain.js"></script>
                 </center>
                 <Button
                     variant="contained"
