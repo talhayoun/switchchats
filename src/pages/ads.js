@@ -2,7 +2,7 @@ import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import { OutbrainWidget } from "react-native-outbrain";
+
 
 
 const Ads = () => {
@@ -33,12 +33,7 @@ const Ads = () => {
                 <script type="text/javascript" async="async" src="//widgets.outbrain.com/outbrain.js">
                 </script>
                 <script type="text/javascript"> OBR.extern.researchWidget(); </script>
-                <OutbrainWidget
-  url={"http://mobile-demo.outbrain.com"}
-  widgetId={"MB_2"}
-  installationKey={"NANOWDGT01"}
-  userId={this.state.idfa}
-/>
+  
                 </center>
                 <Button
                     variant="contained"
