@@ -2,7 +2,7 @@ import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import { OutbrainWidget } from 'react-native-outbrain'
+import { OutbrainWidget } from 'react-native-outbrain';
 
 
 const Ads = () => {
