@@ -2,7 +2,7 @@ import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-
+import { OutbrainWidget } from 'react-outbrain-widget';
 
 
 const Ads = () => {
@@ -29,11 +29,7 @@ const Ads = () => {
                     על מנת להתחיל שיחה חדשה, לחצו על הכפתור למטה
                 </Typography>
                 <center style={{ height: '200px' }}>
-                <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_17"></div> 
-                <script type="text/javascript" async="async" src="//widgets.outbrain.com/outbrain.js">
-                </script>
-                <script type="text/javascript"> OBR.extern.researchWidget(); </script>
-  
+                    <OutbrainWidget dataSrc="mySite.com" dataWidgetId="AR_1" />
                 </center>
                 <Button
                     variant="contained"
