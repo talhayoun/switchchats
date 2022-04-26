@@ -34,9 +34,9 @@ const Ads = () => {
                 <div>ad here</div>
         
         <OutbrainWidget
-          dataSrc="https://www.womansworld.com/posts/how-to-make-eggshell-christmas-ornament-168618"
+          dataSrc="www.noar-il.co.il"
           dataWidgetId="AR_14"
-          obTemplate="womensworld"
+          obTemplate="NoarIL"
         />
      
                 <Button
