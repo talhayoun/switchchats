@@ -28,15 +28,10 @@ const Ads = () => {
                 <Typography variant="subtitle2">
                     על מנת להתחיל שיחה חדשה, לחצו על הכפתור למטה
                 </Typography>
-                <center style={{ height: '200px' }}>
-                    <OutbrainWidget dataSrc="mySite.com" dataWidgetId="AR_1" />
-                </center>
-                <div>ad here</div>
-        
         <OutbrainWidget
-          dataSrc="www.noar-il.co.il"
+          dataSrc="www.skippi.net"
           dataWidgetId="AR_14"
-          obTemplate="NoarIL"
+          obTemplate="Skippi"
         />
      
                 <Button
