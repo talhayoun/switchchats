@@ -31,6 +31,14 @@ const Ads = () => {
                 <center style={{ height: '200px' }}>
                     <OutbrainWidget dataSrc="mySite.com" dataWidgetId="AR_1" />
                 </center>
+                <div>ad here</div>
+        
+        <OutbrainWidget
+          dataSrc="https://www.womansworld.com/posts/how-to-make-eggshell-christmas-ornament-168618"
+          dataWidgetId="AR_1"
+          obTemplate="womensworld"
+        />
+      </div>
                 <Button
                     variant="contained"
                     sx={{
