@@ -38,7 +38,7 @@ const Ads = () => {
           dataWidgetId="AR_1"
           obTemplate="womensworld"
         />
-      </div>
+     
                 <Button
                     variant="contained"
                     sx={{
