@@ -3,7 +3,7 @@ import logo from "../assets/img/background/logo.png"
 const Header = (props) => {
     return (
         <Box>
-            <img src={logo} style={{ maxHeight: '300px', ...props }} />
+            <img src={logo} style={{ maxHeight: '120px', ...props }} />
         </Box>
     );
 };
