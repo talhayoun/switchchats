@@ -31,7 +31,7 @@ const Ads = () => {
     
         <div class="OUTBRAIN"
 data-ob-contentUrl="DROP_PERMALINK_HERE"
-data-widget-id="AR_6"
+data-widget-id="AR_15"
 data-ob-installation-key="ADNIMKAJDGAG4GAO6AGG6H5KP"
 ></div>
 <script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
