@@ -28,14 +28,10 @@ const Ads = () => {
                 <Typography variant="subtitle2">
                     על מנת להתחיל שיחה חדשה, לחצו על הכפתור למטה
                 </Typography>
-        <OutbrainWidget
-          dataSrc="www.skippi.net"
-          dataWidgetId="AR_14"
-          obTemplate="Skippi"
-        />
+    
         <div class="OUTBRAIN"
 data-ob-contentUrl="DROP_PERMALINK_HERE"
-data-widget-id="AR_14"
+data-widget-id="AR_6"
 data-ob-installation-key="ADNIMKAJDGAG4GAO6AGG6H5KP"
 ></div>
 <script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
