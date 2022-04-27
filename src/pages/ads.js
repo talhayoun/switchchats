@@ -35,7 +35,7 @@ data-widget-id="AR_15"
 data-ob-installation-key="ADNIMKAJDGAG4GAO6AGG6H5KP"
 ></div>
 <script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
-     */}
+     */
      class Component extends React.Component {
   render() {
     return (
