@@ -28,6 +28,12 @@ const Ads = () => {
                 <Typography variant="subtitle2">
                     על מנת להתחיל שיחה חדשה, לחצו על הכפתור למטה
                 </Typography>
+
+                <OutbrainWidget
+          dataSrc="www.noar-il.co.il"
+          dataWidgetId="AR_14"
+          obTemplate="noaril"
+        />
                 <div class="OUTBRAIN"
 data-ob-contentUrl="DROP_PERMALINK_HERE"
 data-widget-id="AR_1"
