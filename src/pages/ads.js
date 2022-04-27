@@ -28,14 +28,7 @@ const Ads = () => {
                 <Typography variant="subtitle2">
                     על מנת להתחיל שיחה חדשה, לחצו על הכפתור למטה
                 </Typography>
-    
-     class Component extends React.Component {
-  render() {
-    return (
-      <OutbrainWidget dataSrc="www.noar-il.co.il" dataWidgetId="AR_14" />
-    );
-  }
-}
+                
                 <Button
                     variant="contained"
                     sx={{
