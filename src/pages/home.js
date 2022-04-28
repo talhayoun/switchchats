@@ -15,8 +15,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Regulations from "../components/Regulations";
 import Cards from "../components/Cards";
-
 const Home = () => {
+    ReactGA.initialize('G-78SBDDVM0R');
+    ReactGA.pageview(window.location.pathname);
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
     const [isRulesDisplay, setIsRulesDisplay] = useState(false);
