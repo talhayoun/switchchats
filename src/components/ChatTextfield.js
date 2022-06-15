@@ -7,12 +7,16 @@ import {
     InputAdornment,
     InputLabel,
     TextField,
+    useTheme,
+    useMediaQuery,
 } from "@mui/material";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 
 const ChatTextfield = (props) => {
     const { socket } = props;
+    const theme = useTheme();
+    const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
     const switchHandler = () => {
         socket.emit("leaveRoom");
     };
@@ -24,7 +28,9 @@ const ChatTextfield = (props) => {
                 position: "relative",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: 'center'
+                justifyContent: 'center',
+                position: isDesktop ? "relative" : "sticky",
+                bottom: 0
             }}
         >
             <SendIcon sx={{ cursor: "pointer" }} onClick={() => props.sendMessage()} />
