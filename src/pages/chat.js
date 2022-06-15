@@ -324,7 +324,7 @@ const Chat = (props) => {
                                 flexDirection: "column",
                                 padding: "5px",
                                 position: isDesktop ? "relative" : 'sticky',
-                                top: "4rem"
+                                top: "10rem"
                             }}
                         >
                             <ConversationType />
