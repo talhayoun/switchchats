@@ -16,7 +16,7 @@ import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 const ChatTextfield = (props) => {
     const { socket } = props;
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
     const switchHandler = () => {
         socket.emit("leaveRoom");
     };
@@ -30,6 +30,7 @@ const ChatTextfield = (props) => {
                 alignItems: "center",
                 justifyContent: 'center',
                 position: isDesktop ? "relative" : "sticky",
+                position: "-webkit-sticky",
                 bottom: 0
             }}
         >

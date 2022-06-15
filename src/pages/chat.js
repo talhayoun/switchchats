@@ -61,7 +61,7 @@ const initialState = {
 
 const Chat = (props) => {
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
     const chatRef = useRef();
     const inputRef = useRef();
     const [state, setState] = useState(initialState);
@@ -282,10 +282,11 @@ const Chat = (props) => {
                                 justifyContent: "space-between",
                                 alignItems: "center",
                                 padding: "5px",
-                                position: isDesktop ? "relative" : 'sticky',
+                                position: "-webkit-sticky",
+                                position: isDesktop ? "relative" : "sticky",
                                 top: 0,
                                 background: "beige",
-                                zIndex: '999'
+                                zIndex: "999",
                             }}
                         >
                             <Box
@@ -322,7 +323,7 @@ const Chat = (props) => {
                                 height: "100%",
                                 display: "flex",
                                 flexDirection: "column",
-                                padding: "5px"
+                                padding: "5px",
                             }}
                         >
                             <ConversationType />
