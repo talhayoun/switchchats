@@ -262,7 +262,7 @@ const Chat = (props) => {
                         width: "100%",
                         maxWidth: "500px",
                         height: "100%",
-                        margin: "0 auto"
+                        margin: "0 auto",
                     }}
                 >
                     {isDesktop && <Header height={"150px"} />}
@@ -322,9 +322,7 @@ const Chat = (props) => {
                                 height: "100%",
                                 display: "flex",
                                 flexDirection: "column",
-                                padding: "5px",
-                                position: isDesktop ? "relative" : 'sticky',
-                                top: '4rem'
+                                padding: "5px"
                             }}
                         >
                             <ConversationType />
