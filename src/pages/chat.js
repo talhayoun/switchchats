@@ -262,7 +262,7 @@ const Chat = (props) => {
                         width: "100%",
                         maxWidth: "500px",
                         height: "100%",
-                        margin: "0 auto",
+                        margin: "0 auto"
                     }}
                 >
                     {isDesktop && <Header height={"150px"} />}
