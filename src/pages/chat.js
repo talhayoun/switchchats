@@ -322,7 +322,9 @@ const Chat = (props) => {
                                 height: "100%",
                                 display: "flex",
                                 flexDirection: "column",
-                                padding: "5px"
+                                padding: "5px",
+                                position: isDesktop ? "relative" : 'sticky',
+                                top: "4rem"
                             }}
                         >
                             <ConversationType />
