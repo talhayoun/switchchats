@@ -74,10 +74,6 @@ const Chat = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        window.addEventListener("keyup", (e) => {
-            if (e.key == "Enter") {
-            }
-        });
         const newSocket = socketIOClient("https://api.switchats.com");
         setSocket(newSocket);
         return () => newSocket.close();
@@ -153,15 +149,9 @@ const Chat = (props) => {
                 return cloneState;
             });
             navigate("/ads");
-            // this.$router.push("/ads");
-
-            // this.$store.commit("setChatQueue", true);
-            // window.location.pathname = '/ads.html'
         });
 
         socket.on("message", (payload) => {
-            const msg_ = payload.data.text;
-            const uid_ = payload.uid;
             setState((prevState) => {
                 let cloneState = { ...prevState };
                 cloneState.state.chat.messages = [
@@ -176,8 +166,6 @@ const Chat = (props) => {
                 cloneState.state.chat.peerTyping = false;
                 return cloneState;
             });
-            // apiHelper.message(uid_, msg_, state.state.roomId);
-            // this.scrollChatDown();
         });
 
         socket.on("typingStatus", (payload) => {
@@ -197,14 +185,6 @@ const Chat = (props) => {
                 }, 2000)
             );
         });
-
-        // socket.on('banned', () => {
-        //     this.$notify({
-        //         group: 'main',
-        //         text: 'You are blocked, due to multiple reports of your behavior',
-        //         type: 'error'
-        //     })
-        // })
     }, [socket]);
 
     useEffect(() => {
@@ -268,15 +248,6 @@ const Chat = (props) => {
         });
         socket.emit("message", newMessage);
         setMessage("");
-        // this.scrollChatDown()
-
-        //     this.$notify({
-        //       group: 'main',
-        //       text: 'Please enter a message',
-        //       type: 'warn'
-        //     })
-
-        //   this.$refs.chatInput.focus()
     };
 
     return (
@@ -287,32 +258,34 @@ const Chat = (props) => {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        justifyContent: 'center',
+                        justifyContent: "center",
                         width: "100%",
                         maxWidth: "500px",
                         height: "100%",
-                        margin: '0 auto'
+                        margin: "0 auto",
                     }}
                 >
                     {isDesktop && <Header height={"150px"} />}
                     <Paper
                         sx={{
-                            position: 'relative',
+                            position: "relative",
                             display: "flex",
                             justifyContent: "center",
                             flexDirection: "column",
                             width: isDesktop ? "90%" : "100%",
-                            height: isDesktop ? "550px" : '100%'
+                            height: isDesktop ? "550px" : "100%",
                         }}
                     >
                         <Box
                             sx={{
                                 display: "flex",
                                 justifyContent: "space-between",
-                                alignItems: 'center',
+                                alignItems: "center",
                                 padding: "5px",
-                                width: '95%',
-                                margin: '0 auto'
+                                width: "95%",
+                                margin: "0 auto",
+                                position: isDesktop ? "relative" : 'fixed',
+                                top: 0
                             }}
                         >
                             <Box
@@ -328,7 +301,7 @@ const Chat = (props) => {
                                         sx={{
                                             textDecoration: "none",
                                             width: "95%",
-                                            margin: '0 auto',
+                                            margin: "0 auto",
                                             maxWidth: "100px",
                                             color: "#3c5a7f",
                                             cursor: "pointer",
@@ -347,9 +320,10 @@ const Chat = (props) => {
                             className="chatblock"
                             sx={{
                                 height: "100%",
-                                display: 'flex',
-                                flexDirection: 'column',
-                                padding: '5px',
+                                display: "flex",
+                                flexDirection: "column",
+                                padding: "5px",
+                                marginTop: "4rem"
                             }}
                         >
                             <ConversationType />
@@ -362,7 +336,7 @@ const Chat = (props) => {
                                     overflow: "auto",
                                     width: "100%",
                                     maxHeight: "450px",
-                                    minHeight: '400px'
+                                    minHeight: "400px",
                                 }}
                             >
                                 {state.state.chat.messages.length > 0 &&

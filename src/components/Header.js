@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import ReactGA from 'react-ga';
 import logo from "../assets/img/background/logo.png"
 const Header = (props) => {
@@ -7,9 +7,9 @@ const Header = (props) => {
         <Box>
             <img src={logo} style={{ maxHeight: '120px', ...props }} />
         </Box>
-        
+
     );
-    
+
 };
 
 export default Header;
