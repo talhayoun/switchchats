@@ -282,10 +282,10 @@ const Chat = (props) => {
                                 justifyContent: "space-between",
                                 alignItems: "center",
                                 padding: "5px",
-                                width: "95%",
-                                margin: "0 auto",
                                 position: isDesktop ? "relative" : 'sticky',
-                                top: 0
+                                top: 0,
+                                background: "beige",
+                                zIndex: '999'
                             }}
                         >
                             <Box
