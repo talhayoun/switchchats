@@ -16,7 +16,7 @@ import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 const ChatTextfield = (props) => {
     const { socket } = props;
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
     const switchHandler = () => {
         socket.emit("leaveRoom");
     };

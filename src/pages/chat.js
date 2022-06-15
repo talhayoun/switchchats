@@ -61,7 +61,7 @@ const initialState = {
 
 const Chat = (props) => {
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
     const chatRef = useRef();
     const inputRef = useRef();
     const [state, setState] = useState(initialState);

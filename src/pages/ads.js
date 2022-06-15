@@ -7,7 +7,7 @@ import { OutbrainWidget } from 'react-outbrain-widget';
 
 const Ads = () => {
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
     const navigate = useNavigate();
     return (
         <Box sx={{ width: "100vw", height: "100vh" }}>
@@ -30,13 +30,13 @@ const Ads = () => {
                 </Typography>
 
                 <OutbrainWidget
-        />
+                />
                 <div class="OUTBRAIN"
-data-ob-contentUrl="DROP_PERMALINK_HERE"
-data-widget-id="AR_3"
-data-ob-installation-key="ADNIMKAJDGAG4GAO6AGG6H5KP"
-></div>
-<script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
+                    data-ob-contentUrl="DROP_PERMALINK_HERE"
+                    data-widget-id="AR_3"
+                    data-ob-installation-key="ADNIMKAJDGAG4GAO6AGG6H5KP"
+                ></div>
+                <script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
                 <Button
                     variant="contained"
                     sx={{
