@@ -9,6 +9,7 @@ import {
     useTheme,
 } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import HomeIcon from '@mui/icons-material/Home';
 import Header from "../components/Header";
 import User from "../components/User";
 import { v4 as uuidv4 } from "uuid";
@@ -296,7 +297,7 @@ const Chat = (props) => {
                                 }}
                             >
                                 <Tooltip title="יציאה מהצאט">
-                                    <ExitToAppIcon
+                                    <HomeIcon
                                         onClick={changeNameHandler}
                                         sx={{
                                             textDecoration: "none",

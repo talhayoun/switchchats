@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 const User = (props) => {
     return (
         <div style={{ display: "flex", gap: "20px" }}>
-            <Avatar alt="Remy Sharp" src={props.user?.avatarUrl} />
+
             <Box>
                 <Typography
                     sx={{ color: "#2d4b71", fontSize: "1rem" }}
@@ -19,6 +19,7 @@ const User = (props) => {
                     {props?.isTyping ? "מקליד/ה" : "מחובר/ת"}
                 </Typography>
             </Box>
+            <Avatar alt="Remy Sharp" src={props.user?.avatarUrl} />
         </div>
     );
 };

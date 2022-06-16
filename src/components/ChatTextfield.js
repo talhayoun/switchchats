@@ -61,6 +61,8 @@ const ChatTextfield = (props) => {
                 onClick={switchHandler}
                 sx={{
                     cursor: "pointer",
+                    border: "1px solid black",
+                    borderRadius: '10px'
                 }}
             />
         </Box>
