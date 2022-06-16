@@ -282,7 +282,6 @@ const Chat = (props) => {
                                 justifyContent: "space-between",
                                 alignItems: "center",
                                 padding: "5px",
-                                position: "-webkit-sticky",
                                 position: isDesktop ? "relative" : "sticky",
                                 top: 0,
                                 background: "beige",

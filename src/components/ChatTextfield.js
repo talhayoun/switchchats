@@ -30,7 +30,6 @@ const ChatTextfield = (props) => {
                 alignItems: "center",
                 justifyContent: 'center',
                 position: isDesktop ? "relative" : "sticky",
-                position: "-webkit-sticky",
                 bottom: 0
             }}
         >
