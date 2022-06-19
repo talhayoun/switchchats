@@ -47,7 +47,7 @@ const ChatTextfield = (props) => {
                     value={props.message}
                     onChange={(e) => props.onChangeMessage(e.target.value)}
                     endAdornment={
-                        <InputAdornment position="end">
+                        <InputAdornment position="end" style={{ marginLeft: 0 }}>
                             <IconButton
                                 aria-label="toggle password visibility"
                             >
@@ -62,7 +62,8 @@ const ChatTextfield = (props) => {
                 sx={{
                     cursor: "pointer",
                     border: "1px solid black",
-                    borderRadius: '10px'
+                    borderRadius: '10px',
+                    fontSize: '2rem'
                 }}
             />
         </Box>

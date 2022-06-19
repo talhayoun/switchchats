@@ -285,7 +285,7 @@ const Chat = (props) => {
                                 padding: "5px",
                                 position: isDesktop ? "relative" : "sticky",
                                 top: 0,
-                                background: "beige",
+                                background: "#c8e7f5",
                                 zIndex: "999",
                             }}
                         >
@@ -294,6 +294,7 @@ const Chat = (props) => {
                                     display: "flex",
                                     flexDirection: "column",
                                     maxWidth: "30px",
+                                    marginLeft: '30px'
                                 }}
                             >
                                 <Tooltip title="יציאה מהצאט">

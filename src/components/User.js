@@ -7,10 +7,10 @@ const User = (props) => {
 
             <Box>
                 <Typography
-                    sx={{ color: "#2d4b71", fontSize: "1rem" }}
+                    sx={{ color: "#2d4b71", fontSize: "1rem", textAlign: 'right' }}
                     variant="subtitle2"
                 >
-                    {props?.user?.nickname || "דוד"}
+                    {props?.user?.nickname}
                 </Typography>
                 <Typography
                     sx={{ color: "#2d4b71", fontSize: "1rem", marginTop: "-5px" }}
