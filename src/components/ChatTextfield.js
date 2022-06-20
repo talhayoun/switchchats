@@ -34,7 +34,7 @@ const ChatTextfield = (props) => {
             }}
         >
             <SendIcon sx={{ cursor: "pointer" }} onClick={() => props.sendMessage()} />
-            <FormControl sx={{ m: 1, width: "80%" }} variant="standard" dir="rtl">
+            <FormControl sx={{ m: 1, width: "75%" }} variant="standard" dir="rtl">
                 <Input
                     onKeyDown={props.keyDown}
                     sx={{
