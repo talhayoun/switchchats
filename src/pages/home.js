@@ -66,7 +66,6 @@ const Home = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     flexDirection: "column",
-                    height: '100%'
                 }}
             >
                 <Box
