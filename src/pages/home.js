@@ -9,20 +9,19 @@ import {
     TextField,
     Typography,
     useMediaQuery,
-    useTheme
+    useTheme,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Regulations from "../components/Regulations";
 import Cards from "../components/Cards";
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga";
 const Home = () => {
-    
-ReactGA.initialize('G-78SBDDVM0R');
-ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.initialize("G-78SBDDVM0R");
+    ReactGA.pageview(window.location.pathname + window.location.search);
 
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
     const [isRulesDisplay, setIsRulesDisplay] = useState(false);
     const [username, setUsername] = useState("");
     const [message, setMessage] = useState("");
@@ -48,9 +47,16 @@ ReactGA.pageview(window.location.pathname + window.location.search);
         }
     };
 
+    const onChangeUsername = (e) => {
+        if (e.key == "Enter") {
+            searchChatHandler();
+        };
+    }
+
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, [])
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+    }, []);
 
     return (
         <>
@@ -59,7 +65,7 @@ ReactGA.pageview(window.location.pathname + window.location.search);
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    flexDirection: 'column',
+                    flexDirection: "column",
                 }}
             >
                 <Box
@@ -69,6 +75,7 @@ ReactGA.pageview(window.location.pathname + window.location.search);
                         alignItems: "center",
                         justifyContent: "center",
                         height: "100%",
+                        width: "100%",
                     }}
                 >
                     <Paper
@@ -78,13 +85,14 @@ ReactGA.pageview(window.location.pathname + window.location.search);
                             flexDirection: "column",
                             alignItems: "center",
                             padding: isDesktop ? "20px 150px" : "10px 20px 30px 20px",
+                            width: "95%",
                         }}
                     >
                         <Header />
                         <Typography
                             sx={{
                                 margin: 0,
-                                fontSize: isDesktop ? "1.4rem" : '16px',
+                                fontSize: isDesktop ? "1.4rem" : "16px",
                                 color: "#6d8fba",
                                 direction: "rtl",
                             }}
@@ -98,7 +106,7 @@ ReactGA.pageview(window.location.pathname + window.location.search);
                                         variant="h6"
                                         textAlign
                                         sx={{
-                                            fontSize: isDesktop ? '18px' : '14px',
+                                            fontSize: isDesktop ? "18px" : "14px",
                                             textAlign: "center",
                                             mb: "4px",
                                             color: "#486890",
@@ -109,6 +117,7 @@ ReactGA.pageview(window.location.pathname + window.location.search);
                                     </Typography>
                                     <TextField
                                         value={username}
+                                        onKeyDown={(e) => onChangeUsername(e)}
                                         onChange={(e) => setUsername(e.target.value)}
                                         dir="rtl"
                                         variant="standard"
@@ -127,13 +136,23 @@ ReactGA.pageview(window.location.pathname + window.location.search);
                                     ></TextField>
                                 </>
                             ) : (
-                                <Box sx={{ margin: "16px 0px", direction: "rtl", display: 'flex', alignItems: 'center' }}>
+                                <Box
+                                    sx={{
+                                        margin: "16px 0px",
+                                        direction: "rtl",
+                                        display: "flex",
+                                        alignItems: "center",
+                                    }}
+                                >
                                     <Checkbox defaultChecked required />
-                                    <Typography
-                                        variant="subtitle2"
-                                        sx={{ marginRight: '20px' }}
-                                    >
-                                        אני מאשר שקראתי את <span style={{ cursor: 'pointer', color: 'blue' }} onClick={() => setRegulationVisible(true)}>התקנון</span>
+                                    <Typography variant="subtitle2" sx={{ marginRight: "20px" }}>
+                                        אני מאשר שקראתי את{" "}
+                                        <span
+                                            style={{ cursor: "pointer", color: "blue" }}
+                                            onClick={() => setRegulationVisible(true)}
+                                        >
+                                            התקנון
+                                        </span>
                                     </Typography>
                                 </Box>
                             )}
@@ -171,7 +190,12 @@ ReactGA.pageview(window.location.pathname + window.location.search);
                     {message}
                 </Alert>
             </Snackbar>
-            {regulationVisible && <Regulations open={regulationVisible} close={() => setRegulationVisible(false)} />}
+            {regulationVisible && (
+                <Regulations
+                    open={regulationVisible}
+                    close={() => setRegulationVisible(false)}
+                />
+            )}
         </>
     );
 };

@@ -9,6 +9,7 @@ const Loading = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 height: "100vh",
+                overflowY: 'hidden'
             }}
         >
             <Box
@@ -21,7 +22,7 @@ const Loading = () => {
                 <Header />
                 <div class="lds-ripple" style={{ marginTop: '30px', marginBottom: '20px' }}><div></div><div></div></div>
                 <Typography variant="h6" sx={{ marginTop: '10px', color: "#820096" }}>
-                ...אנחנו מחפשים לך שותף/ה לשיחה
+                    ...אנחנו מחפשים לך שותף/ה לשיחה
                 </Typography>
             </Box>
         </Box>

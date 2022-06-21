@@ -294,7 +294,7 @@ const Chat = (props) => {
                                     display: "flex",
                                     flexDirection: "column",
                                     maxWidth: "30px",
-                                    marginLeft: '20px'
+                                    marginLeft: '10px'
                                 }}
                             >
                                 <Tooltip title="יציאה מהצאט">
@@ -309,6 +309,7 @@ const Chat = (props) => {
                                             cursor: "pointer",
                                             marginBottom: "3%",
                                             textAlign: "center",
+                                            fontSize: '35px'
                                         }}
                                     />
                                 </Tooltip>

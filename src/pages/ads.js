@@ -13,12 +13,13 @@ const Ads = () => {
         <Box sx={{ width: "100vw", height: "100vh" }}>
             <Box
                 sx={{
-                    height: "85%",
+                    height: "100%",
                     width: "100%",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "flex-start",
+                    justifyContent: "center",
                     flexDirection: "column",
+                    overflowY: 'hidden'
                 }}
             >
                 <Header height={'200px'} />
