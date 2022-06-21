@@ -66,6 +66,7 @@ const Home = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     flexDirection: "column",
+                    height: '100%'
                 }}
             >
                 <Box
@@ -76,6 +77,7 @@ const Home = () => {
                         justifyContent: "center",
                         height: "100%",
                         width: "100%",
+                        maxWidth: '500px'
                     }}
                 >
                     <Paper
