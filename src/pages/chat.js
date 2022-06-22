@@ -266,7 +266,7 @@ const Chat = (props) => {
                         margin: "0 auto",
                     }}
                 >
-                    {isDesktop && <Header height={"150px"} />}
+                    {isDesktop && <Header height={"150px"} marginBottom={"50px"} />}
                     <Paper
                         sx={{
                             position: "relative",
@@ -337,7 +337,7 @@ const Chat = (props) => {
                                     flexDirection: "column",
                                     overflow: "auto",
                                     width: "100%",
-                                    maxHeight: "450px",
+                                    maxHeight: isDesktop ? "400px" : "90%",
                                     minHeight: "400px",
                                 }}
                             >
