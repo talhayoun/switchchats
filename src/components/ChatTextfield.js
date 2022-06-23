@@ -33,7 +33,16 @@ const ChatTextfield = (props) => {
                 bottom: 0
             }}
         >
-            <SendIcon sx={{ cursor: "pointer" }} onClick={() => props.sendMessage()} />
+            <SwapVertIcon
+                onClick={switchHandler}
+                sx={{
+                    cursor: "pointer",
+                    border: "1px solid black",
+                    borderRadius: '10px',
+                    fontSize: '2rem'
+                }}
+            />
+
             <FormControl sx={{ m: 1, width: "75%" }} variant="standard" dir="rtl">
                 <Input
                     onKeyDown={props.keyDown}
@@ -57,15 +66,7 @@ const ChatTextfield = (props) => {
                     }
                 />
             </FormControl>
-            <SwapVertIcon
-                onClick={switchHandler}
-                sx={{
-                    cursor: "pointer",
-                    border: "1px solid black",
-                    borderRadius: '10px',
-                    fontSize: '2rem'
-                }}
-            />
+            <SendIcon sx={{ cursor: "pointer" }} onClick={() => props.sendMessage()} />
         </Box>
     );
 };
