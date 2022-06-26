@@ -20,6 +20,7 @@ import Loading from "./loading";
 import ConversationType from "../components/ConversationType";
 import ChatTextfield from "../components/ChatTextfield";
 import Report from "../components/ReportModal";
+import Div100vh from 'react-div-100vh';
 
 const initialState = {
     state: {
@@ -76,10 +77,6 @@ const Chat = (props) => {
 
     useEffect(() => {
         const newSocket = socketIOClient("https://api.switchats.com");
-        document.ontouchmove = function (e) {
-            e.preventDefault()
-        };
-
         setSocket(newSocket);
         return () => newSocket.close();
     }, []);
@@ -256,7 +253,7 @@ const Chat = (props) => {
     };
 
     return (
-        <>
+        <Div100vh>
             {state.state.chat.loading || !state.state.chat.inQueue ? (
                 <Box
                     sx={{
@@ -409,7 +406,7 @@ const Chat = (props) => {
                     </Alert>
                 </Snackbar>
             )}
-        </>
+        </Div100vh>
     );
 };
 
