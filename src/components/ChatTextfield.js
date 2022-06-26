@@ -21,6 +21,11 @@ const ChatTextfield = (props) => {
         socket.emit("leaveRoom");
     };
 
+    const onFocusHandler = () => {
+        window.scrollTo(0, 0);
+        document.body.scrollTop = 0;
+    };
+
     return (
         <Box
             sx={{
@@ -28,9 +33,9 @@ const ChatTextfield = (props) => {
                 position: "relative",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: 'center',
+                justifyContent: "center",
                 position: isDesktop ? "relative" : "sticky",
-                bottom: 0
+                bottom: 0,
             }}
         >
             <SwapVertIcon
@@ -38,13 +43,14 @@ const ChatTextfield = (props) => {
                 sx={{
                     cursor: "pointer",
                     border: "1px solid black",
-                    borderRadius: '10px',
-                    fontSize: '2rem'
+                    borderRadius: "10px",
+                    fontSize: "2rem",
                 }}
             />
 
             <FormControl sx={{ m: 1, width: "75%" }} variant="standard" dir="rtl">
                 <Input
+                    onFocus={onFocusHandler}
                     onKeyDown={props.keyDown}
                     sx={{
                         backgroundColor: "#f1f3f6",
@@ -57,16 +63,17 @@ const ChatTextfield = (props) => {
                     onChange={(e) => props.onChangeMessage(e.target.value)}
                     endAdornment={
                         <InputAdornment position="end" style={{ marginLeft: 0 }}>
-                            <IconButton
-                                aria-label="toggle password visibility"
-                            >
+                            <IconButton aria-label="toggle password visibility">
                                 <ReportGmailerrorredIcon onClick={props.reportModal} />
                             </IconButton>
                         </InputAdornment>
                     }
                 />
             </FormControl>
-            <SendIcon sx={{ cursor: "pointer" }} onClick={() => props.sendMessage()} />
+            <SendIcon
+                sx={{ cursor: "pointer" }}
+                onClick={() => props.sendMessage()}
+            />
         </Box>
     );
 };

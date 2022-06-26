@@ -76,6 +76,10 @@ const Chat = (props) => {
 
     useEffect(() => {
         const newSocket = socketIOClient("https://api.switchats.com");
+        document.ontouchmove = function (e) {
+            e.preventDefault()
+        };
+
         setSocket(newSocket);
         return () => newSocket.close();
     }, []);
