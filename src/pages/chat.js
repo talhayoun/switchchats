@@ -285,7 +285,7 @@ const Chat = (props) => {
                                 padding: "5px",
                                 position: isDesktop ? "relative" : "fixed",
                                 top: 0,
-                                width: '99%'
+                                width: '99%',
                                 background: "#c8e7f5",
                                 zIndex: "999",
                             }}
