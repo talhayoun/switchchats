@@ -283,8 +283,9 @@ const Chat = (props) => {
                                 justifyContent: "space-between",
                                 alignItems: "center",
                                 padding: "5px",
-                                position: isDesktop ? "relative" : "sticky",
+                                position: isDesktop ? "relative" : "fixed",
                                 top: 0,
+                                width: '99%'
                                 background: "#c8e7f5",
                                 zIndex: "999",
                             }}
@@ -326,6 +327,7 @@ const Chat = (props) => {
                                 display: "flex",
                                 flexDirection: "column",
                                 padding: "5px",
+                                marginTop: '4rem'
                             }}
                         >
                             <ConversationType />
