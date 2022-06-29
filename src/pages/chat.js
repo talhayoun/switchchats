@@ -9,7 +9,7 @@ import {
     useTheme,
 } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import HomeIcon from '@mui/icons-material/Home';
+import HomeIcon from "@mui/icons-material/Home";
 import Header from "../components/Header";
 import User from "../components/User";
 import { v4 as uuidv4 } from "uuid";
@@ -21,7 +21,20 @@ import ConversationType from "../components/ConversationType";
 import ChatTextfield from "../components/ChatTextfield";
 import Report from "../components/ReportModal";
 
-const conversationTopics = ['משחקי מחשב', 'סרטי בורקס', 'מערכות יחסים', 'אהבה', 'פארק שעשועים', 'אופנה', 'אקטואליה', 'אוכל', 'בית ספר', 'צבא', 'ספורט', 'שחייה']
+const conversationTopics = [
+    "משחקי מחשב",
+    "סרטי בורקס",
+    "מערכות יחסים",
+    "אהבה",
+    "פארק שעשועים",
+    "אופנה",
+    "אקטואליה",
+    "אוכל",
+    "בית ספר",
+    "צבא",
+    "ספורט",
+    "שחייה",
+];
 
 const initialState = {
     state: {
@@ -80,7 +93,10 @@ const Chat = (props) => {
     useEffect(() => {
         const newSocket = socketIOClient("https://api.switchats.com");
         setSocket(newSocket);
-        return () => newSocket.close();
+        return () => {
+            socket.emit("leaveRoom");
+            newSocket.close();
+        };
     }, []);
 
     useEffect(() => {
@@ -132,7 +148,8 @@ const Chat = (props) => {
                 let cloneState = { ...prevState };
                 cloneState.state.roomId = payload.room;
 
-                cloneState.state.conversationTopic = conversationTopics[payload.room.replace(/\D/g, '')[0]]
+                cloneState.state.conversationTopic =
+                    conversationTopics[payload.room.replace(/\D/g, "")[0]];
 
                 cloneState.state.chat.loading = false;
                 cloneState.state.chat.inQueue = false;
@@ -292,7 +309,7 @@ const Chat = (props) => {
                                 padding: "5px",
                                 position: isDesktop ? "relative" : "fixed",
                                 top: 0,
-                                width: '99%',
+                                width: "99%",
                                 background: "#c8e7f5",
                                 zIndex: "999",
                             }}
@@ -302,7 +319,7 @@ const Chat = (props) => {
                                     display: "flex",
                                     flexDirection: "column",
                                     maxWidth: "30px",
-                                    marginLeft: '10px'
+                                    marginLeft: "10px",
                                 }}
                             >
                                 <Tooltip title="יציאה מהצאט">
@@ -317,7 +334,7 @@ const Chat = (props) => {
                                             cursor: "pointer",
                                             marginBottom: "3%",
                                             textAlign: "center",
-                                            fontSize: '35px'
+                                            fontSize: "35px",
                                         }}
                                     />
                                 </Tooltip>
@@ -334,10 +351,12 @@ const Chat = (props) => {
                                 display: "flex",
                                 flexDirection: "column",
                                 padding: "5px",
-                                marginTop: isDesktop ? "0px" : '4rem'
+
                             }}
                         >
-                            <ConversationType conversation={state?.state?.conversationTopic} />
+                            <ConversationType
+                                conversation={state?.state?.conversationTopic}
+                            />
                             <Box
                                 ref={chatRef}
                                 sx={{
@@ -348,6 +367,7 @@ const Chat = (props) => {
                                     width: "100%",
                                     maxHeight: isDesktop ? "400px" : "90%",
                                     minHeight: "400px",
+                                    marginTop: isDesktop ? "0px" : "4rem"
                                 }}
                             >
                                 {state.state.chat.messages.length > 0 &&
@@ -355,7 +375,7 @@ const Chat = (props) => {
                                         <p
                                             key={index}
                                             style={{
-                                                direction: 'rtl',
+                                                direction: "rtl",
                                                 alignSelf:
                                                     state.state.chat.currentUser.id === curMessage.uid
                                                         ? "end"
