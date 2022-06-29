@@ -21,6 +21,8 @@ import ConversationType from "../components/ConversationType";
 import ChatTextfield from "../components/ChatTextfield";
 import Report from "../components/ReportModal";
 
+const conversationTopics = ['משחקי מחשב', 'סרטי בורקס', 'מערכות יחסים', 'אהבה', 'פארק שעשועים', 'אופנה', 'אקטואליה', 'אוכל', 'בית ספר', 'צבא', 'ספורט', 'שחייה']
+
 const initialState = {
     state: {
         nickname: localStorage.getItem("nickname") || "",
@@ -55,6 +57,7 @@ const initialState = {
             maxHeight: null,
         },
         roomId: "",
+        conversationTopic: "",
         reportType: "",
         reportText: "",
     },
@@ -124,9 +127,13 @@ const Chat = (props) => {
 
         socket.on("chatStart", (payload) => {
             apiHelper.attachRoom(payload.room);
+
             setState((prevState) => {
                 let cloneState = { ...prevState };
                 cloneState.state.roomId = payload.room;
+
+                cloneState.state.conversationTopic = conversationTopics[payload.room.replace(/\D/g, '')[0]]
+
                 cloneState.state.chat.loading = false;
                 cloneState.state.chat.inQueue = false;
                 cloneState.state.chat.message = "";
@@ -330,7 +337,7 @@ const Chat = (props) => {
                                 marginTop: '4rem'
                             }}
                         >
-                            <ConversationType />
+                            <ConversationType conversation={state?.state?.conversationTopic} />
                             <Box
                                 ref={chatRef}
                                 sx={{
