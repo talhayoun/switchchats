@@ -334,7 +334,7 @@ const Chat = (props) => {
                                 display: "flex",
                                 flexDirection: "column",
                                 padding: "5px",
-                                marginTop: '4rem'
+                                marginTop: isDesktop ? "0px" : '4rem'
                             }}
                         >
                             <ConversationType conversation={state?.state?.conversationTopic} />
@@ -355,6 +355,7 @@ const Chat = (props) => {
                                         <p
                                             key={index}
                                             style={{
+                                                direction: 'rtl',
                                                 alignSelf:
                                                     state.state.chat.currentUser.id === curMessage.uid
                                                         ? "end"
