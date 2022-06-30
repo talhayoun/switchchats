@@ -347,11 +347,11 @@ const Chat = (props) => {
                         <Box
                             className="chatblock"
                             sx={{
-                                height: "100%",
+                                height: "95%",
                                 display: "flex",
                                 flexDirection: "column",
                                 padding: "5px",
-
+                                marginBottom: "30px",
                             }}
                         >
                             <ConversationType
@@ -367,7 +367,7 @@ const Chat = (props) => {
                                     width: "100%",
                                     maxHeight: isDesktop ? "400px" : "90%",
                                     minHeight: "400px",
-                                    marginTop: isDesktop ? "0px" : "4rem"
+                                    marginTop: isDesktop ? "0px" : "4rem",
                                 }}
                             >
                                 {state.state.chat.messages.length > 0 &&

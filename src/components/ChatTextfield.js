@@ -34,7 +34,8 @@ const ChatTextfield = (props) => {
                 alignItems: "center",
                 justifyContent: 'center',
                 position: isDesktop ? "relative" : "sticky",
-                bottom: 0
+                bottom: 0,
+                background: "#fff"
             }}
         >
             <SwapVertIcon
