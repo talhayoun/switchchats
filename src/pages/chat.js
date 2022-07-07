@@ -370,9 +370,9 @@ const Chat = (props) => {
                                     flexDirection: "column",
                                     overflow: "auto",
                                     width: "100%",
-                                    maxHeight: isDesktop ? "400px" : "90%",
+                                    maxHeight: isDesktop ? "400px" : "87%",
                                     minHeight: "400px",
-                                    marginTop: isDesktop ? "0px" : "4rem",
+                                    marginTop: isDesktop ? "0px" : "3rem",
                                 }}
                             >
                                 {state.state.chat.messages.length > 0 &&
