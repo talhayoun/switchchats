@@ -10,7 +10,7 @@ const Ads = () => {
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
     const navigate = useNavigate();
     return (
-        <Box sx={{ height: "100%" }}>
+        <Box sx={{ height: "100vh" }}>
             <Box
                 sx={{
                     height: "100%",

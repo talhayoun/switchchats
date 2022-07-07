@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 import Regulations from "../components/Regulations";
 import Cards from "../components/Cards";
 import ReactGA from "react-ga";
+import { OutbrainWidget } from "react-outbrain-widget";
+
 const Home = () => {
     ReactGA.initialize("G-78SBDDVM0R");
     ReactGA.pageview(window.location.pathname + window.location.search);
@@ -50,12 +52,11 @@ const Home = () => {
     const onChangeUsername = (e) => {
         if (e.key == "Enter") {
             searchChatHandler();
-        };
-    }
+        }
+    };
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
-
     }, []);
 
     return (
@@ -66,6 +67,7 @@ const Home = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     flexDirection: "column",
+                    overflowX: 'hidden'
                 }}
             >
                 <Box
@@ -76,7 +78,7 @@ const Home = () => {
                         justifyContent: "center",
                         height: "100%",
                         width: "100%",
-                        maxWidth: '500px'
+                        maxWidth: "500px",
                     }}
                 >
                     <Paper
@@ -173,9 +175,21 @@ const Home = () => {
                         >
                             {isRulesDisplay ? "המשך" : "התחל שיחה"}
                         </Button>
+                        <OutbrainWidget />
+                        <div
+                            class="OUTBRAIN"
+                            data-ob-contentUrl="DROP_PERMALINK_HERE"
+                            data-widget-id="AR_3"
+                            data-ob-installation-key="ADNIMKAJDGAG4GAO6AGG6H5KP"
+                        ></div>
+                        <script
+                            type="text/javascript"
+                            async="async"
+                            src="https://widgets.outbrain.com/outbrain.js"
+                        ></script>
+                        <Cards />
                     </Paper>
                 </Box>
-                <Cards />
             </Box>
             <Snackbar
                 open={snackStatus}

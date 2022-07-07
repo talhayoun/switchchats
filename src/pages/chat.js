@@ -103,7 +103,10 @@ const Chat = (props) => {
         if (!socket) return;
         let userId = uuidv4();
         let username = localStorage.getItem("nickname");
-        if (!username) navigate("/");
+        if (!username) {
+            socket.close();
+            navigate("/");
+        }
         if (localStorage.getItem("uid")) {
             userId = localStorage.getItem("uid");
         } else {
@@ -173,6 +176,7 @@ const Chat = (props) => {
                 cloneState.state.chat.inQueue = true;
                 return cloneState;
             });
+            socket.close();
             navigate("/ads");
         });
 
@@ -252,6 +256,7 @@ const Chat = (props) => {
         localStorage.removeItem("nickname");
         localStorage.removeItem("uid");
         socket.emit("leaveRoom");
+        socket.close();
         navigate("/");
     };
 
@@ -286,7 +291,7 @@ const Chat = (props) => {
                         justifyContent: "center",
                         width: "100%",
                         maxWidth: "500px",
-                        height: "100%",
+                        height: "100vh",
                         margin: "0 auto",
                     }}
                 >
