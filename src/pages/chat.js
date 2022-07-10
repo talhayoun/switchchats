@@ -384,6 +384,7 @@ const Chat = (props) => {
                                 display: "flex",
                                 flexDirection: "column",
                                 padding: "5px",
+                                marginTop: '4rem'
                             }}
                         >
                             <ConversationType
