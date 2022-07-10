@@ -12,13 +12,16 @@ import {
 } from "@mui/material";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
+import { useNavigate } from "react-router-dom";
 
 const ChatTextfield = (props) => {
     const { socket } = props;
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+    const navigate = useNavigate();
     const switchHandler = () => {
         socket.emit("leaveRoom");
+        navigate("/ads");
     };
 
     // const onFocusHandler = () => {

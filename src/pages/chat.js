@@ -317,6 +317,7 @@ const Chat = (props) => {
                         maxWidth: "500px",
                         height: "100vh",
                         margin: "0 auto",
+                        overflow: 'hidden'
                     }}
                 >
                     {isDesktop && <Header height={"150px"} marginBottom={"50px"} />}
@@ -327,6 +328,7 @@ const Chat = (props) => {
                             flexDirection: "column",
                             height: "100%",
                             width: "100%",
+                            overflow: "hidden"
                             // justifyContent: "center",
                             // width: isDesktop ? "90%" : "100%",
                             // height: isDesktop ? "550px" : "100%",
