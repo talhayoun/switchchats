@@ -32,8 +32,9 @@ const ChatTextfield = (props) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: 'center',
+                position: 'fixed',
                 // position: isDesktop ? "relative" : "fixed",
-                // bottom: 0,
+                bottom: 0,
                 background: "#fff"
             }}
         >

@@ -339,9 +339,10 @@ const Chat = (props) => {
                                 alignItems: "center",
                                 padding: "5px",
                                 height: "3rem",
+                                position: 'fixed',
                                 // position: isDesktop ? "relative" : "fixed",
-                                // top: 0,
-                                // width: "99%",
+                                top: 0,
+                                width: "99%",
                                 background: "#c8e7f5",
                                 // zIndex: "999",
                             }}
@@ -379,7 +380,7 @@ const Chat = (props) => {
                         <Box
                             className="chatblock"
                             sx={{
-                                height: "calc(100% - 4rem)",
+                                height: "calc(100% - 8rem)",
                                 display: "flex",
                                 flexDirection: "column",
                                 padding: "5px",
