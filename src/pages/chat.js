@@ -223,49 +223,27 @@ const Chat = (props) => {
         }
     }, [state]);
 
-    useEffect(() => {
-        // define a function that sets min-height of my-element to window.innerHeight:
 
-        const setHeight = () => {
-            document.getElementById("root").style.minHeight =
-                window.innerHeight + "px";
-        };
+    // const isIOS = () => {
+    //     return /iPad|iPhone|iPod/.test(navigator.platform || "");
+    // };
 
-        // define mobile screen size:
+    // useEffect(() => {
+    //     const isDeviceIOS = isIOS();
 
-        let deviceWidth = window.matchMedia("(max-width: 1024px)");
+    //     if (isDeviceIOS) {
+    //         setState((prevState) => {
+    //             let cloneState = { ...prevState };
+    //             cloneState.window.maxHeight =
+    //                 document.querySelector("#root").clientHeight;
+    //         });
 
-        if (deviceWidth.matches) {
-            // set an event listener that detects when innerHeight changes:
-
-            window.addEventListener("resize", setHeight);
-
-            // call the function once to set initial height:
-
-            setHeight();
-        }
-    }, []);
-
-    const isIOS = () => {
-        return /iPad|iPhone|iPod/.test(navigator.platform || "");
-    };
-
-    useEffect(() => {
-        const isDeviceIOS = isIOS();
-
-        if (isDeviceIOS) {
-            setState((prevState) => {
-                let cloneState = { ...prevState };
-                cloneState.window.maxHeight =
-                    document.querySelector("#root").clientHeight;
-            });
-
-            document.body.style.height = `${state.state.window.maxHeight}px`;
-            document.querySelector(
-                "#root"
-            ).style.height = `${state.state.window.maxHeight}px`;
-        }
-    }, []);
+    //         document.body.style.height = `${state.state.window.maxHeight}px`;
+    //         document.querySelector(
+    //             "#root"
+    //         ).style.height = `${state.state.window.maxHeight}px`;
+    //     }
+    // }, []);
 
     const chatInputKeyUp = (e) => {
         if (e.key === "Enter") return sendMessageHandler();
