@@ -88,6 +88,7 @@ const Chat = (props) => {
     const [typingTimeout, setTypingTimeout] = useState(null);
     const [peeringTypingTimeout, setPeeringTypingTimeout] = useState(null);
     const [showSnackBar, setShowSnackBar] = useState(false);
+    //   const [isIOS, setIsIOS] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -226,7 +227,7 @@ const Chat = (props) => {
         // define a function that sets min-height of my-element to window.innerHeight:
 
         const setHeight = () => {
-            document.getElementById("container").style.minHeight =
+            document.getElementById("root").style.minHeight =
                 window.innerHeight + "px";
         };
 
@@ -242,6 +243,27 @@ const Chat = (props) => {
             // call the function once to set initial height:
 
             setHeight();
+        }
+    }, []);
+
+    const isIOS = () => {
+        return /iPad|iPhone|iPod/.test(navigator.platform || "");
+    };
+
+    useEffect(() => {
+        const isDeviceIOS = isIOS();
+
+        if (isDeviceIOS) {
+            setState((prevState) => {
+                let cloneState = { ...prevState };
+                cloneState.window.maxHeight =
+                    document.querySelector("#root").clientHeight;
+            });
+
+            document.body.style.height = `${state.state.window.maxHeight}px`;
+            document.querySelector(
+                "#root"
+            ).style.height = `${state.state.window.maxHeight}px`;
         }
     }, []);
 
@@ -317,7 +339,7 @@ const Chat = (props) => {
                         maxWidth: "500px",
                         height: "100vh",
                         margin: "0 auto",
-                        overflow: 'hidden'
+                        overflow: "hidden",
                     }}
                 >
                     {isDesktop && <Header height={"150px"} marginBottom={"50px"} />}
@@ -328,7 +350,7 @@ const Chat = (props) => {
                             flexDirection: "column",
                             height: "100%",
                             width: "100%",
-                            overflow: "hidden"
+                            overflow: "hidden",
                             // justifyContent: "center",
                             // width: isDesktop ? "90%" : "100%",
                             // height: isDesktop ? "550px" : "100%",
@@ -341,7 +363,7 @@ const Chat = (props) => {
                                 alignItems: "center",
                                 padding: "5px",
                                 height: "3rem",
-                                position: 'fixed',
+                                position: "fixed",
                                 // position: isDesktop ? "relative" : "fixed",
                                 top: 0,
                                 width: "99%",
@@ -386,7 +408,7 @@ const Chat = (props) => {
                                 display: "flex",
                                 flexDirection: "column",
                                 padding: "5px",
-                                marginTop: '4rem'
+                                marginTop: "4rem",
                             }}
                         >
                             <ConversationType
