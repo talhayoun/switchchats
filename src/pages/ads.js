@@ -17,7 +17,7 @@ const Ads = () => {
                     width: "100%",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    // justifyContent: "center",
                     flexDirection: "column",
                     overflow: 'hidden'
                 }}
