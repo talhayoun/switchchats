@@ -28,10 +28,12 @@ const ChatTextfield = (props) => {
     return (
         <Box
             sx={{
-                // width: "100%",
+                width: "100%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: 'center',
+                position: 'absolute',
+                bottom: 0,
                 // position: isDesktop ? "relative" : "fixed",
                 // bottom: 0,
                 background: "#fff"

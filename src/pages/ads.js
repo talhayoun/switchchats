@@ -19,7 +19,7 @@ const Ads = () => {
                     alignItems: "center",
                     justifyContent: "center",
                     flexDirection: "column",
-                    overflowY: 'hidden'
+                    overflow: 'hidden'
                 }}
             >
                 <Header height={'200px'} />

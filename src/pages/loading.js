@@ -9,7 +9,7 @@ const Loading = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 height: "100vh",
-                overflowY: 'hidden'
+                overflow: 'hidden'
             }}
         >
             <Box

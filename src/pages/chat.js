@@ -298,7 +298,7 @@ const Chat = (props) => {
                     {isDesktop && <Header height={"150px"} marginBottom={"50px"} />}
                     <Paper
                         sx={{
-                            // position: "relative",
+                            position: "relative",
                             display: "flex",
                             flexDirection: "column",
                             height: "100%",
@@ -315,9 +315,9 @@ const Chat = (props) => {
                                 alignItems: "center",
                                 padding: "5px",
                                 height: '3rem',
-                                // position: isDesktop ? "relative" : "fixed",
-                                // top: 0,
-                                // width: "99%",
+                                position: 'absolute',
+                                top: 0,
+                                width: "99%",
                                 background: "#c8e7f5",
                                 // zIndex: "999",
                             }}
@@ -355,10 +355,11 @@ const Chat = (props) => {
                         <Box
                             className="chatblock"
                             sx={{
-                                height: "calc(100% - 4rem)",
+                                height: "calc(100% - 8rem)",
                                 display: "flex",
                                 flexDirection: "column",
                                 padding: "5px",
+                                marginTop: '4rem'
                             }}
                         >
                             <ConversationType
