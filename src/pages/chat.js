@@ -221,16 +221,29 @@ const Chat = (props) => {
             chatRef.current.scrollTop = chatRef.current.scrollHeight;
         }
     }, [state]);
+
     useEffect(() => {
-        function resetHeight() {
-            // reset the body height to that of the inner browser
-            document.body.style.height = window.innerHeight + "px";
+        // define a function that sets min-height of my-element to window.innerHeight:
+
+        const setHeight = () => {
+            document.getElementById("container").style.minHeight =
+                window.innerHeight + "px";
+        };
+
+        // define mobile screen size:
+
+        let deviceWidth = window.matchMedia("(max-width: 1024px)");
+
+        if (deviceWidth.matches) {
+            // set an event listener that detects when innerHeight changes:
+
+            window.addEventListener("resize", setHeight);
+
+            // call the function once to set initial height:
+
+            setHeight();
         }
-        // reset the height whenever the window's resized
-        window.addEventListener("resize", resetHeight);
-        // called to initially set the height.
-        resetHeight();
-    }, [])
+    }, []);
 
     const chatInputKeyUp = (e) => {
         if (e.key === "Enter") return sendMessageHandler();
@@ -294,6 +307,7 @@ const Chat = (props) => {
         <>
             {state.state.chat.loading || !state.state.chat.inQueue ? (
                 <Box
+                    id="container"
                     sx={{
                         display: "flex",
                         flexDirection: "column",
@@ -324,10 +338,10 @@ const Chat = (props) => {
                                 justifyContent: "space-between",
                                 alignItems: "center",
                                 padding: "5px",
-                                height: '3rem',
-                                position: 'absolute',
-                                top: 0,
-                                width: "99%",
+                                height: "3rem",
+                                // position: isDesktop ? "relative" : "fixed",
+                                // top: 0,
+                                // width: "99%",
                                 background: "#c8e7f5",
                                 // zIndex: "999",
                             }}
@@ -365,11 +379,10 @@ const Chat = (props) => {
                         <Box
                             className="chatblock"
                             sx={{
-                                height: "calc(100% - 8rem)",
+                                height: "calc(100% - 4rem)",
                                 display: "flex",
                                 flexDirection: "column",
                                 padding: "5px",
-                                marginTop: '4rem'
                             }}
                         >
                             <ConversationType

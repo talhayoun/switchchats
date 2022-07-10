@@ -21,19 +21,17 @@ const ChatTextfield = (props) => {
         socket.emit("leaveRoom");
     };
 
-    const onFocusHandler = () => {
-        window.scrollTo(0, 0);
-    }
+    // const onFocusHandler = () => {
+    //     window.scrollTo(0, 0);
+    // }
 
     return (
         <Box
             sx={{
-                width: "100%",
+                // width: "100%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: 'center',
-                position: 'absolute',
-                bottom: 0,
                 // position: isDesktop ? "relative" : "fixed",
                 // bottom: 0,
                 background: "#fff"
@@ -51,7 +49,7 @@ const ChatTextfield = (props) => {
 
             <FormControl sx={{ m: 1, width: "75%" }} variant="standard" dir="rtl">
                 <Input
-                    onFocus={onFocusHandler}
+                    // onFocus={onFocusHandler}
                     onKeyDown={props.keyDown}
                     sx={{
                         backgroundColor: "#f1f3f6",
