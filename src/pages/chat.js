@@ -298,12 +298,14 @@ const Chat = (props) => {
                     {isDesktop && <Header height={"150px"} marginBottom={"50px"} />}
                     <Paper
                         sx={{
-                            position: "relative",
+                            // position: "relative",
                             display: "flex",
-                            justifyContent: "center",
                             flexDirection: "column",
-                            width: isDesktop ? "90%" : "100%",
-                            height: isDesktop ? "550px" : "100%",
+                            height: "100%",
+                            width: "100%",
+                            // justifyContent: "center",
+                            // width: isDesktop ? "90%" : "100%",
+                            // height: isDesktop ? "550px" : "100%",
                         }}
                     >
                         <Box
@@ -312,11 +314,11 @@ const Chat = (props) => {
                                 justifyContent: "space-between",
                                 alignItems: "center",
                                 padding: "5px",
-                                position: isDesktop ? "relative" : "fixed",
-                                top: 0,
-                                width: "99%",
+                                // position: isDesktop ? "relative" : "fixed",
+                                // top: 0,
+                                // width: "99%",
                                 background: "#c8e7f5",
-                                zIndex: "999",
+                                // zIndex: "999",
                             }}
                         >
                             <Box
@@ -356,7 +358,6 @@ const Chat = (props) => {
                                 display: "flex",
                                 flexDirection: "column",
                                 padding: "5px",
-                                marginBottom: "30px",
                             }}
                         >
                             <ConversationType
@@ -365,14 +366,16 @@ const Chat = (props) => {
                             <Box
                                 ref={chatRef}
                                 sx={{
+                                    flexGrow: "1",
+                                    height: "1px",
                                     display: "flex",
-                                    alignItems: "flex-end",
+                                    alignItems: "flex-start",
                                     flexDirection: "column",
                                     overflow: "auto",
                                     width: "100%",
-                                    maxHeight: isDesktop ? "400px" : "87%",
-                                    minHeight: "400px",
-                                    marginTop: isDesktop ? "0px" : "3rem",
+                                    // maxHeight: isDesktop ? "400px" : "87%",
+                                    // minHeight: "400px",
+                                    // marginTop: isDesktop ? "0px" : "3rem",
                                 }}
                             >
                                 {state.state.chat.messages.length > 0 &&
@@ -402,15 +405,15 @@ const Chat = (props) => {
                                         </p>
                                     ))}
                             </Box>
+                            <ChatTextfield
+                                keyDown={chatInputKeyUp}
+                                message={message}
+                                onChangeMessage={setMessage}
+                                sendMessage={sendMessageHandler}
+                                socket={socket}
+                                reportModal={() => setReportModal(true)}
+                            />
                         </Box>
-                        <ChatTextfield
-                            keyDown={chatInputKeyUp}
-                            message={message}
-                            onChangeMessage={setMessage}
-                            sendMessage={sendMessageHandler}
-                            socket={socket}
-                            reportModal={() => setReportModal(true)}
-                        />
                     </Paper>
                 </Box>
             ) : (
