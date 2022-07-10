@@ -67,7 +67,7 @@ const Home = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     flexDirection: "column",
-                    overflowX: 'hidden'
+                    overflowX: "hidden",
                 }}
             >
                 <Box
@@ -89,6 +89,8 @@ const Home = () => {
                             alignItems: "center",
                             padding: isDesktop ? "20px 150px" : "10px 20px 30px 20px",
                             width: "95%",
+                            overflow: "scroll",
+                            height: "100vh",
                         }}
                     >
                         <Header />
