@@ -5,7 +5,8 @@
     </div>
 
     <div class="ads-container">
-      <div class="OUTBRAIN ads-item-container" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_3"></div>
+      <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_3"></div>
+      <script type="text/javascript" async="async" src="//widgets.outbrain.com/outbrain.js"></script>
     </div>
 
     <div class="window-action">
