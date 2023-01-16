@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'switchats-icons';
+  src:  url('fonts/switchats-icons.eot?nsoa6c');
+  src:  url('fonts/switchats-icons.eot?nsoa6c#iefix') format('embedded-opentype'),
+    url('fonts/switchats-icons.ttf?nsoa6c') format('truetype'),
+    url('fonts/switchats-icons.woff?nsoa6c') format('woff'),
+    url('fonts/switchats-icons.svg?nsoa6c#switchats-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'switchats-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-emoji:before {
+  content: "\e900";
+}
+.icon-chevron__left:before {
+  content: "\e901";
+}
