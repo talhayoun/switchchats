@@ -15,7 +15,7 @@ export default {
   },
   created: async function () {
     try {
-      const serverStatusResponse = await axios.get('http://127.0.0.1:8989/status')
+      const serverStatusResponse = await axios.get('https://api.skippi.net/status')
 
       if (serverStatusResponse.status !== 200) {
         throw new Error('Network error')

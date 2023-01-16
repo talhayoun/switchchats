@@ -85,7 +85,7 @@ export default {
   methods: {
     getOnline: async function () {
       try {
-        const response = await axios.get('http://127.0.0.1:8989/online')
+        const response = await axios.get('https://api.skippi.net/online')
 
         if (response.status !== 200) {
           throw new Error('Network or server error')

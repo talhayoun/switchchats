@@ -258,7 +258,7 @@ export default {
     this.$store.commit('setChatLoading', true)
 
     // socket = socketIOClient(window.location.origin.replace(/^http/, 'ws'))
-    socket = socketIOClient('ws://127.0.0.1:8989')
+    socket = socketIOClient('wss://api.skippi.net/')
 
     socket.on('connect', () => {
       console.log('[WS] Connected')
