@@ -3,14 +3,11 @@
     <div class="ads-text">
       <p>אוי.. השיחה נגמרה , לחץ על הכפתור לשיחה חדשה</p>
     </div>
-
     <div class="ads-container">
       <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_3"></div>
       <script type="text/javascript" async="async" src="//widgets.outbrain.com/outbrain.js"></script>
-    
     <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_17"></div>
     <script type="text/javascript" async="async" src="//widgets.outbrain.com/outbrain.js"></script>
-  
   <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="MB_20"></div>
   <script type="text/javascript" async="async" src="//widgets.outbrain.com/outbrain.js"></script>
       <p>בדיקה בפנים</p>
