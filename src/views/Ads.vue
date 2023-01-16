@@ -5,13 +5,9 @@
     </div>
     <div class="ads-container">
       <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_3"></div>
-      <script type="text/javascript" async="async" src="//widgets.outbrain.com/outbrain.js"></script>
-    <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_17"></div>
-    <script type="text/javascript" async="async" src="//widgets.outbrain.com/outbrain.js"></script>
-  <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="MB_20"></div>
-  <script type="text/javascript" async="async" src="//widgets.outbrain.com/outbrain.js"></script>
+      <script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
       <p>בדיקה בפנים</p>
-  </div>
+    </div>
   <p>בדיקה בדיקה בדיקה 2</p>
   <div class="window-action">
     <a href="#" @click="handleLeave" class="button button__primary">התחל שיחה חדשה</a>
