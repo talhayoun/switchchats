@@ -1,7 +1,7 @@
 <template>
   <div class="ads">
     <div class="ads-text">
-      <p>השיחה נגמרה , לחץ על הכפתור לשיחה חדשה</p>
+      <p>אוי.. השיחה נגמרה , לחץ על הכפתור לשיחה חדשה</p>
     </div>
 
     <div class="ads-container">
