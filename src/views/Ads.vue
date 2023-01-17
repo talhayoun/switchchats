@@ -8,7 +8,7 @@
       <script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
       <p>בדיקה בפנים</p>
     </div>
-    <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_17"></div>
+    <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_3"></div>
     <script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
     <p>בדיקה בדיקה בדיקה 2</p>
     <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="MB_20"></div>
