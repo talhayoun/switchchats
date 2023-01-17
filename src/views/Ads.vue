@@ -19,11 +19,12 @@
     </div>
   </div>
 </template>
+
 <script>
   import 'https://widgets.outbrain.com/outbrain.js'
 
   export default {
-    name: 'Ads',
+
     mounted() {
       OBR.extern('outbrain_widget', {
         widgetId: 'AR_3',
@@ -35,15 +36,8 @@
       });
     }
   }
-</script>
-<script>
-  export default {
-    methods: {
-      handleLeave: function () {
-        this.$router.push('/')
-      }
-    }
-  }
+
+ 
 </script>
 
 <style lang="scss" scoped>
