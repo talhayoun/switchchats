@@ -19,12 +19,8 @@
     </div>
   </div>
 </template>
-
 <script>
-  import 'https://widgets.outbrain.com/outbrain.js'
-
   export default {
-
     mounted() {
       OBR.extern('outbrain_widget', {
         widgetId: 'AR_3',
@@ -36,10 +32,7 @@
       });
     }
   }
-
- 
 </script>
-
 <style lang="scss" scoped>
   .ads {
     max-width: 640px;
