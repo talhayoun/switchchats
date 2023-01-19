@@ -1,19 +1,14 @@
 <template>
   <div class="ads">
     <div class="ads-text">
-      <p>אוי.. השיחה נגמרה , לחץ על הכפתור לשיחה חדשה</p>
+      <p>השיחה נגמרה , לחץ על הכפתור לשיחה חדשה</p>
     </div>
     <div class="ads-container">
-      <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="AR_3"></div>
-      <script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
-      <p>בדיקה בפנים</p>
-      <div id="outbrain_widget"></div>
+      <div class="OUTBRAIN"
+           data-ob-contentUrl="DROP_PERMALINK_HERE"
+           data-widget-id="AR_33"
+           data-ob-installation-key="ADNIMKAJDGAG4GAO6AGG6H5KP"></div>
     </div>
-    <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="MB_20"></div>
-    <script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
-    <p>בדיקה בדיקה בדיקה 2</p>
-    <div class="OUTBRAIN" data-src="DROP_PERMALINK_HERE" data-widget-id="MB_20"></div>
-    <script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
     <div class="window-action">
       <a href="#" @click="handleLeave" class="button button__primary">התחל שיחה חדשה</a>
     </div>
@@ -21,25 +16,19 @@
 </template>
 <script>
   export default {
-    mounted() {
-      OBR.extern('outbrain_widget', {
-        widgetId: 'AR_3',
-        type: 'outbrain',
-        options: {
-          section: 'Sports'
-        },
-
-      });
+    methods: {
+      handleLeave: function () {
+        this.$router.push('/')
+      }
     }
   }
 </script>
+
 <style lang="scss" scoped>
   .ads {
     max-width: 640px;
-
     .ads-text {
       padding: 8px 12px;
-
       p {
         margin: 0;
         font-size: 1rem;
@@ -63,25 +52,21 @@
         border: 2px solid #dbe3ee;
         border-radius: 8px;
         overflow: hidden;
-
         h4 {
           font-size: 1.4rem;
           font-weight: 500;
           color: #dbe3ee;
         }
-
         .ads-item-container {
           height: 100%;
         }
       }
-
       .ads-item:last-child {
         flex: 0 1 calc(100% - 8px);
         margin-top: 8px;
         height: 80px;
       }
     }
-
     .window-action {
       display: flex;
       justify-content: center;
