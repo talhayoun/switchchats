@@ -18,11 +18,9 @@
       'main__loading': $router.currentRoute.name === 'Loading'
     }">
       <div :class="$router.currentRoute.name !== 'Chat' ? 'brand' : 'brand brand__hidden'">
-        <h1 class="brand-title">Switchats</h1>
-        <p class="brand-description">הצ’אטים שיעבירו לכם את הזמן</p>
-        <center>
-          <a href="https://www.noar-il.co.il/" target='_self'><img src="https://www.noar-il.co.il/wp-content/uploads/2020/03/cropped-image0-1-192x192.png" width="55" height="55"/></a>
-        </center>
+        <h1 class="brand-title">Skippi</h1>
+        <p class="brand-description">הצ'אט של המדינה!</p>
+      
       </div>
 
       <div
