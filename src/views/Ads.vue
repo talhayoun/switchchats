@@ -7,7 +7,7 @@
       <div
         class="OUTBRAIN"
         data-ob-contentUrl="DROP_PERMALINK_HERE"
-        data-widget-id="AR_14"
+        data-widget-id="AR_3"
         data-ob-installation-key="ADNIMKAJDGAG4GAO6AGG6H5KP"
       ></div>
     </div>
