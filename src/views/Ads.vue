@@ -46,8 +46,9 @@ export default {
   .ads-container {
     display: flex;
     flex-wrap: wrap;
+    width: 90%;
     .ads-item {
-      flex: 0 1 calc(50% - 8px);
+      flex: 0 1 calc(30% - 8px);
       display: flex;
       justify-content: center;
       align-items: center;
