@@ -46,7 +46,7 @@ export default {
   .ads-container {
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    width: 100%;
     .ads-item {
       flex: 0 1 calc(30% - 8px);
       display: flex;
