@@ -175,7 +175,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: #fafcff;
+  background: #282c32;
 }
 
 @media (min-width: 992px) {
