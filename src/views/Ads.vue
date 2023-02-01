@@ -22,7 +22,7 @@
 export default {
   methods: {
     handleLeave: function() {
-      this.$router.push("/");
+      this.$router.push('/');
     }
   }
 };
