@@ -41,7 +41,7 @@ export default {
     }
   }
   .OUTBRAIN{
-    width: 80%;
+    width: 100%;
   }
   .ads-container {
     display: flex;
