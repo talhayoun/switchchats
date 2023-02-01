@@ -20,7 +20,6 @@
       <div :class="$router.currentRoute.name !== 'Chat' ? 'brand' : 'brand brand__hidden'">
         <h1 class="brand-title">Skippi</h1>
         <p class="brand-description">הצ'אט של המדינה!</p>
-      
       </div>
 
       <div
