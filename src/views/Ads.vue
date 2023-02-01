@@ -40,6 +40,9 @@ export default {
       color: #6d8fba;
     }
   }
+  .OUTBRAIN{
+    width: 80%;
+  }
   .ads-container {
     display: flex;
     flex-wrap: wrap;
