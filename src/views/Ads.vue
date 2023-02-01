@@ -7,12 +7,12 @@
       <div
         class="OUTBRAIN"
         data-ob-contentUrl="DROP_PERMALINK_HERE"
-        data-widget-id="AR_33"
+        data-widget-id="AR_17"
         data-ob-installation-key="ADNIMKAJDGAG4GAO6AGG6H5KP"
       ></div>
     </div>
     <div class="window-action">
-      <a href="#" @click="handleLeave" class="button button__primary"
+      <a href="/" @click="handleLeave" class="button button__primary"
         >התחל שיחה חדשה</a
       >
     </div>
