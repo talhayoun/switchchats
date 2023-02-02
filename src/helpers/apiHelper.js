@@ -16,11 +16,13 @@ const apiHelper = {
       console.log('message sent')
     })
   },
+  /*
   report(roomId, reportType, reportText) {
     axios.get('https://api.skippi.net/report?type=' + reportType + '&text=' + reportText + '&' + 'roomId=' + roomId).then(msg_ => {
       console.log('user reported')
     })
   }
+  */
 }
 
 export default apiHelper
