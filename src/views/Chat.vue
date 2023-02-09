@@ -498,7 +498,7 @@ export default {
 
       if (this.$store.state.chat.peer) {
         socket.emit('report', this.$store.state.chat.peer.id)
-        //apiHelper.report(this.$store.state.roomId)
+        //  apiHelper.report(this.$store.state.roomId)
         this.$notify({
           group: 'main',
           text: 'המשתמש דווח, תודה על הדיווח',
@@ -525,7 +525,7 @@ export default {
       const reportType = this.$store.state.reportType
       const reportText = this.$store.state.reportText
       console.log(reportType, reportText)
-      //apiHelper.report(this.$store.state.roomId, reportType, reportText)
+      //  apiHelper.report(this.$store.state.roomId, reportType, reportText)
       socket.emit('leaveRoom')
       this.$notify({
         group: 'main',
